@@ -25,6 +25,7 @@ export const youtubeCategories = [
   "Advertising and Growth",
   "Roleplay Structure",
   "Automation and Systems",
+  "Emergency Response Liberty County Helpful Tips",
 ];
 
 // Website Resource Categories
@@ -221,6 +222,18 @@ export const resources: Resource[] = [
     type: "video",
     url: "https://youtu.be/p6aF5ma7BiM?si=JoLd5Op4smTWJ2iA",
     category: "Automation and Systems",
+    creator: "YouTube Creator",
+    section: "youtube",
+    channelName: "YouTube Creator",
+    isNew: true,
+  },
+  {
+    id: "31",
+    title: "New Player Guide",
+    description: "A quick-start guide for new Emergency Response Liberty County players. Covers the basics to help you get started.",
+    type: "video",
+    url: "https://youtu.be/_op97mYl1Nw?si=VjDPYiHF7mxycffW",
+    category: "Emergency Response Liberty County Helpful Tips",
     creator: "YouTube Creator",
     section: "youtube",
     channelName: "YouTube Creator",

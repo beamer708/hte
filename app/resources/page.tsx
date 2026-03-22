@@ -8,7 +8,8 @@ import WebsiteResourceCard from "@/components/WebsiteResourceCard";
 import DiscordCommunityCard from "@/components/DiscordCommunityCard";
 
 // Pre-computed sections
-const youtubeResources = resources.filter((r) => r.section === "youtube");
+const erlcTipsResources = resources.filter((r) => r.section === "youtube" && r.category === "Emergency Response Liberty County Helpful Tips");
+const youtubeResources = resources.filter((r) => r.section === "youtube" && r.category !== "Emergency Response Liberty County Helpful Tips");
 const websiteResources = resources.filter((r) => r.section === "website");
 const discordResources = resources.filter((r) => r.section === "discord");
 
@@ -60,7 +61,15 @@ export default function ResourcesPage() {
     [query]
   );
 
-  const totalFiltered = filteredYoutube.length + filteredWebsite.length + filteredDiscord.length;
+  const filteredErlcTips = useMemo(
+    () =>
+      erlcTipsResources.filter((r) =>
+        matchesQuery(query, r.title, r.description, r.category, r.channelName)
+      ),
+    [query]
+  );
+
+  const totalFiltered = filteredYoutube.length + filteredWebsite.length + filteredDiscord.length + filteredErlcTips.length;
   const isFiltering = query.trim().length > 0;
 
   return (
@@ -147,7 +156,26 @@ export default function ResourcesPage() {
           </section>
         )}
 
-        {/* SECTION 2: Websites & Tools */}
+        {/* SECTION 2: Emergency Response Liberty County Helpful Tips */}
+        {(!isFiltering || filteredErlcTips.length > 0) && (
+          <section aria-labelledby="section-erlc-tips" className="mb-20">
+            <SectionHeader label="Emergency Response Liberty County Helpful Tips" />
+            <div
+              id="section-erlc-tips"
+              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {filteredErlcTips.length > 0 ? (
+                filteredErlcTips.map((resource) => (
+                  <YouTubeResourceCard key={resource.id} resource={resource} />
+                ))
+              ) : (
+                <EmptyState message="No tips resources match your search." />
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* SECTION 4: Websites & Tools */}
         {(!isFiltering || filteredWebsite.length > 0) && (
           <section aria-labelledby="section-websites" className="mb-20">
             <SectionHeader label="Websites & Tools" />
@@ -166,7 +194,7 @@ export default function ResourcesPage() {
           </section>
         )}
 
-        {/* SECTION 3: Discord Communities */}
+        {/* SECTION 5: Discord Communities */}
         {(!isFiltering || filteredDiscord.length > 0) && (
           <section aria-labelledby="section-discord" className="mb-12">
             <SectionHeader label="Discord Communities" />
