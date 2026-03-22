@@ -4,6 +4,7 @@ import "./globals.css";
 import MainLayout from "@/components/MainLayout";
 import ShutdownNotice from "@/components/ShutdownNotice";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export const metadata: Metadata = {
   title: "Unity Vault | ERLC Community Resource Vault",
@@ -36,6 +37,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" />
       </head>
       <body className="antialiased">
+        {!isShutdown && <LoadingScreen />}
         {isShutdown ? <ShutdownNotice /> : <MainLayout>{children}</MainLayout>}
         {!isShutdown && shouldTrackAnalytics ? (
           <Suspense fallback={null}>
