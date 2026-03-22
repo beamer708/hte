@@ -15,7 +15,7 @@ export default function SupportPage() {
 
         <div className="space-y-6">
           <a
-            href="https://discord.gg/3qpVpCBwj"
+            href="https://discord.gg/HjcqH2djjC"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-start gap-4 rounded-2xl border border-border bg-card/80 p-6 transition-all hover:border-primary/35 hover:bg-card-hover"

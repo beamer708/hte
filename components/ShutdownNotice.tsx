@@ -36,7 +36,7 @@ export default function ShutdownNotice() {
 
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href="https://discord.gg/3qpVpCBwj"
+              href="https://discord.gg/HjcqH2djjC"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary w-full sm:w-auto"

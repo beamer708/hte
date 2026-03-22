@@ -52,7 +52,7 @@ export default function CommunityGuidesPage() {
             Open Resource Vault
           </Link>
           <a
-            href="https://discord.gg/3qpVpCBwj"
+            href="https://discord.gg/HjcqH2djjC"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-ghost"

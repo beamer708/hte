@@ -28,7 +28,7 @@ export default function Footer() {
               Status
             </a>
             <a
-              href="https://discord.gg/3qpVpCBwj"
+              href="https://discord.gg/HjcqH2djjC"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary-hover"

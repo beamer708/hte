@@ -119,7 +119,7 @@ export default function StaffApplicationPage() {
                 Back to Support
               </Link>
               <a
-                href="https://discord.gg/3qpVpCBwj"
+                href="https://discord.gg/HjcqH2djjC"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
@@ -294,7 +294,7 @@ export default function StaffApplicationPage() {
               <Icon name="check" className="text-base" />
             </button>
             <a
-              href="https://discord.gg/3qpVpCBwj"
+              href="https://discord.gg/HjcqH2djjC"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost"

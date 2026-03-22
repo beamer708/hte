@@ -15,7 +15,7 @@ export default function ComingSoonBanner() {
           </span>
           <span className="text-foreground/50 hidden sm:inline">·</span>
           <Link
-            href="https://discord.gg/3qpVpCBwj"
+            href="https://discord.gg/HjcqH2djjC"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 hover:text-primary transition-colors underline underline-offset-2"

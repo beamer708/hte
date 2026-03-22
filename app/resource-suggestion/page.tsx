@@ -110,7 +110,7 @@ export default function ResourceSuggestionPage() {
             to follow the result of your suggestion. Approval updates are posted there.
           </p>
           <a
-            href="https://discord.gg/3qpVpCBwj"
+            href="https://discord.gg/HjcqH2djjC"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-hover"
