@@ -18,9 +18,8 @@ export function proxy(request: NextRequest) {
   const password = process.env.ADMIN_DASHBOARD_PASSWORD;
 
   if (!username || !password) {
-    return new NextResponse("Admin dashboard credentials are not configured.", {
-      status: 503,
-    });
+    // HTTP Basic Auth credentials not configured — fall through to client-side login form.
+    return NextResponse.next();
   }
 
   const authHeader = request.headers.get("authorization");
