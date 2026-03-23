@@ -46,7 +46,8 @@ export default function ResourceSuggestionPage() {
     setError(null);
 
     try {
-      const res = await fetch("/api/suggestion", {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL ?? "/api";
+      const res = await fetch(`${apiBase}/suggestion`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -66,7 +66,8 @@ export default function StaffApplicationPage() {
     setError(null);
 
     try {
-      const res = await fetch("/api/application", {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL ?? "/api";
+      const res = await fetch(`${apiBase}/application`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
