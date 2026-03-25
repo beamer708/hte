@@ -138,14 +138,6 @@ export default function Navigation() {
                   >
                     Submit a Suggestion
                   </Link>
-                  <Link
-                    href="/partnership"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setCommunityOpen(false)}
-                  >
-                    Partner With Us
-                  </Link>
                 </div>
               )}
             </div>
@@ -228,13 +220,6 @@ export default function Navigation() {
               onClick={() => setMobileOpen(false)}
             >
               Submit a Suggestion
-            </Link>
-            <Link
-              href="/partnership"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/15"
-              onClick={() => setMobileOpen(false)}
-            >
-              Partner With Us
             </Link>
             {mainLinks.map((link) => (
               <Link
