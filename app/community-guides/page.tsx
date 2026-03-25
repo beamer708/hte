@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Icon from "@/components/Icon";
+import { guides } from "@/lib/guides";
 
 export default function CommunityGuidesPage() {
   return (
@@ -16,43 +17,27 @@ export default function CommunityGuidesPage() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <Link
-            href="/community-guides/emojis"
-            className="group rounded-2xl border border-border bg-card/85 p-6 transition-all hover:border-primary/40 hover:bg-card-hover"
-          >
-            <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
-              <Icon name="sparkles" className="text-xl" />
-            </div>
-            <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-              Create Discord Emojis
-            </h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Learn how to use icon sites, download SVG, recolor in an editor, size to 32x32, and upload to Discord.
-            </p>
-            <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-              Open guide
-              <Icon name="arrow-right" className="text-xs" />
-            </span>
-          </Link>
-
-          <Link
-            href="/guides/logo-design"
-            className="group rounded-2xl border border-border bg-card/85 p-6 transition-all hover:border-primary/40 hover:bg-card-hover"
-          >
-            <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
-              <Icon name="palette" className="text-xl" />
-            </div>
-            <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-              Logo Design Guide
-            </h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              A step-by-step guide to designing a logo for your ERLC server — from concept and typography to final export.
-            </p>
-            <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-              Open guide
-              <Icon name="arrow-right" className="text-xs" />
-            </span>
-          </Link>
+          {guides.map((guide) => (
+            <Link
+              key={guide.id}
+              href={guide.href}
+              className="group rounded-2xl border border-border bg-card/85 p-6 transition-all hover:border-primary/40 hover:bg-card-hover"
+            >
+              <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                <Icon name={guide.icon} className="text-xl" />
+              </div>
+              <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                {guide.title}
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {guide.description}
+              </p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                Open guide
+                <Icon name="arrow-right" className="text-xs" />
+              </span>
+            </Link>
+          ))}
 
           <div className="rounded-2xl border border-border bg-card/80 p-6">
             <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-foreground/70">
@@ -60,7 +45,7 @@ export default function CommunityGuidesPage() {
             </div>
             <h2 className="text-lg font-semibold text-foreground">More guides coming soon</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              We’ll continue adding practical guides for branding, visual systems, and community operations.
+              We'll continue adding practical guides for branding, visual systems, and community operations.
             </p>
           </div>
         </div>
