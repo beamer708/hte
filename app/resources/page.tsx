@@ -1,13 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search, X } from "lucide-react";
+import { Search, X, Sparkles } from "lucide-react";
+import Link from "next/link";
 import { resources } from "@/lib/resources";
 import YouTubeResourceCard from "@/components/YouTubeResourceCard";
 import WebsiteResourceCard from "@/components/WebsiteResourceCard";
 import DiscordCommunityCard from "@/components/DiscordCommunityCard";
 
 // Pre-computed sections
+const newResources = resources.filter((r) => r.isNew);
 const erlcTipsResources = resources.filter((r) => r.section === "youtube" && r.category === "Emergency Response Liberty County Helpful Tips");
 const youtubeResources = resources.filter((r) => r.section === "youtube" && r.category !== "Emergency Response Liberty County Helpful Tips");
 const websiteResources = resources.filter((r) => r.section === "website");
@@ -86,6 +88,23 @@ export default function ResourcesPage() {
           </p>
         </div>
 
+        {/* AI Chat CTA */}
+        <div className="mb-10 flex items-center gap-4 rounded-lg border border-border/60 bg-card px-5 py-4">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border/60 bg-background">
+            <Sparkles className="h-4 w-4 text-accent" strokeWidth={1.8} />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-medium text-foreground">Not sure where to start?</p>
+            <p className="text-xs text-muted-foreground">Describe what you need and our AI assistant will suggest the right resources.</p>
+          </div>
+          <Link
+            href="/resource-chat"
+            className="shrink-0 rounded-lg border border-border bg-background px-4 py-2 text-xs font-medium text-foreground transition-colors hover:bg-white/5"
+          >
+            Ask AI
+          </Link>
+        </div>
+
         {/* Search / filter bar */}
         <div className="mb-14 flex items-center gap-3">
           <div className="relative flex-1 max-w-md">
@@ -135,6 +154,27 @@ export default function ResourcesPage() {
               Clear search
             </button>
           </div>
+        )}
+
+        {/* SECTION: New Resources */}
+        {!isFiltering && newResources.length > 0 && (
+          <section aria-labelledby="section-new" className="mb-20">
+            <SectionHeader label="New" />
+            <div
+              id="section-new"
+              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {newResources.map((resource) =>
+                resource.section === "youtube" ? (
+                  <YouTubeResourceCard key={resource.id} resource={resource} />
+                ) : resource.section === "discord" ? (
+                  <DiscordCommunityCard key={resource.id} resource={resource} />
+                ) : (
+                  <WebsiteResourceCard key={resource.id} resource={resource} />
+                )
+              )}
+            </div>
+          </section>
         )}
 
         {/* SECTION 1: Video Resources */}
