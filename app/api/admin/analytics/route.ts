@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { getAnalyticsSummary } from "@/lib/admin-analytics";
 
-export async function GET(request: Request) {
-  const token = request.headers.get("x-admin-token");
-  if (!token || token !== process.env.ADMIN_PASSWORD) {
+export async function GET() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
     return NextResponse.json({ success: false, error: "Unauthorized." }, { status: 401 });
   }
 

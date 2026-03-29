@@ -1,6 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
+import { FaDiscord } from "react-icons/fa";
+import uLogo from "@/Media/ULogo.svg";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -128,79 +132,10 @@ function InlineStatItem({ label, value, loading }: { label: string; value: numbe
   );
 }
 
-// ─── Login form ───────────────────────────────────────────────────────────────
-
-function LoginForm({ onSuccess }: { onSuccess: (token: string) => void }) {
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!password.trim()) return;
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
-      });
-      const data = await res.json();
-      if (data.success && data.token) {
-        onSuccess(data.token);
-      } else {
-        setError(data.error ?? "Incorrect password.");
-      }
-    } catch {
-      setError("Network error. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="flex min-h-screen items-center justify-center py-12">
-      <div className="w-full max-w-sm px-4">
-        <div className="rounded-3xl border border-border bg-card/85 p-8">
-          <h1 className="text-xl font-bold text-foreground">Admin Dashboard</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Enter your password to continue.</p>
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4" noValidate>
-            <div>
-              <label htmlFor="admin-password" className="mb-2 block text-sm font-medium text-foreground">
-                Password
-              </label>
-              <input
-                id="admin-password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-xl border border-border bg-card px-4 py-3 text-foreground placeholder:text-foreground/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-                placeholder="••••••••"
-                autoFocus
-              />
-              {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
-            </div>
-            <button
-              type="submit"
-              disabled={loading || !password.trim()}
-              className="btn-primary w-full justify-center disabled:pointer-events-none disabled:opacity-50"
-            >
-              {loading ? "Signing in…" : "Sign In"}
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function AdminAnalyticsPage() {
-  const [authState, setAuthState] = useState<"checking" | "login" | "dashboard">("checking");
-  const [token, setToken] = useState("");
+  const { data: session, status } = useSession();
 
   const [statsLoading, setStatsLoading] = useState(true);
   const [historyLoading, setHistoryLoading] = useState(true);
@@ -215,20 +150,16 @@ export default function AdminAnalyticsPage() {
   const [analytics, setAnalytics] = useState<AnalyticsSummary | null>(null);
 
   const [refreshing, setRefreshing] = useState(false);
+  const [noPermission, setNoPermission] = useState(false);
 
-  // ── Auth check on mount
+  // Read error param from URL
   useEffect(() => {
-    const stored = sessionStorage.getItem("admin_token");
-    if (stored) {
-      setToken(stored);
-      setAuthState("dashboard");
-    } else {
-      setAuthState("login");
-    }
+    const params = new URLSearchParams(window.location.search);
+    setNoPermission(params.get("error") === "no_permission");
   }, []);
 
-  // ── Data fetching
-  const fetchAll = useCallback(async (t: string) => {
+  // ── Data fetching (session cookie sent automatically)
+  const fetchAll = useCallback(async () => {
     setStatsLoading(true);
     setHistoryLoading(true);
     setAnalyticsLoading(true);
@@ -236,12 +167,12 @@ export default function AdminAnalyticsPage() {
     setHistoryError(null);
     setAnalyticsError(null);
 
-    const headers = { "Content-Type": "application/json", "x-admin-token": t };
+    const headers = { "Content-Type": "application/json" };
 
     const [statsResult, historyResult, analyticsResult] = await Promise.allSettled([
       fetch("/api/admin/stats", { method: "POST", headers }),
       fetch("/api/admin/history", { method: "POST", headers }),
-      fetch("/api/admin/analytics", { headers: { "x-admin-token": t } }),
+      fetch("/api/admin/analytics"),
     ]);
 
     if (statsResult.status === "fulfilled" && statsResult.value.ok) {
@@ -267,31 +198,19 @@ export default function AdminAnalyticsPage() {
   }, []);
 
   useEffect(() => {
-    if (authState === "dashboard" && token) {
-      void fetchAll(token);
+    if (status === "authenticated") {
+      void fetchAll();
     }
-  }, [authState, token, fetchAll]);
+  }, [status, fetchAll]);
 
   const handleRefresh = async () => {
     setRefreshing(true);
-    await fetchAll(token);
+    await fetchAll();
     setRefreshing(false);
   };
 
-  const handleSignOut = () => {
-    sessionStorage.removeItem("admin_token");
-    setToken("");
-    setAuthState("login");
-  };
-
-  const handleLogin = (t: string) => {
-    sessionStorage.setItem("admin_token", t);
-    setToken(t);
-    setAuthState("dashboard");
-  };
-
-  // ── Render states
-  if (authState === "checking") {
+  // ── Loading state
+  if (status === "loading") {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="h-10 w-10 animate-spin rounded-xl border-2 border-primary/30 border-t-primary" />
@@ -299,11 +218,36 @@ export default function AdminAnalyticsPage() {
     );
   }
 
-  if (authState === "login") {
-    return <LoginForm onSuccess={handleLogin} />;
+  // ── Unauthenticated — Discord login screen
+  if (status === "unauthenticated") {
+    return (
+      <div className="flex min-h-screen items-center justify-center py-12">
+        <div className="w-full max-w-sm px-4">
+          <div className="rounded-3xl border border-border bg-card/85 p-8 text-center">
+            <div className="mb-5 flex justify-center">
+              <Image src={uLogo} alt="" width={48} height={48} />
+            </div>
+            <h1 className="text-xl font-bold text-foreground">Admin Panel</h1>
+            <p className="mt-2 text-sm text-muted-foreground">Sign in with Discord to continue.</p>
+            <button
+              onClick={() => signIn("discord")}
+              className="btn-primary mt-6 w-full justify-center gap-2"
+            >
+              <FaDiscord className="text-lg" />
+              Sign in with Discord
+            </button>
+            {noPermission && (
+              <p className="mt-4 text-sm text-red-400">
+                You do not have the required role to access this panel.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    );
   }
 
-  // ── Dashboard
+  // ── Authenticated — Dashboard
   return (
     <div className="py-10 sm:py-14">
       <div className="page-container max-w-6xl">
@@ -322,7 +266,7 @@ export default function AdminAnalyticsPage() {
             >
               {refreshing ? "Refreshing…" : "Refresh Data"}
             </button>
-            <button onClick={handleSignOut} className="btn-ghost">
+            <button onClick={() => signOut({ callbackUrl: "/admin/analytics" })} className="btn-ghost">
               Sign Out
             </button>
           </div>
@@ -450,7 +394,7 @@ export default function AdminAnalyticsPage() {
           </div>
         </section>
 
-        {/* ── Website Analytics (existing Prisma data) ─────────────── */}
+        {/* ── Website Analytics ─────────────────────────────────────── */}
         <section className="mb-6">
           <div className="rounded-xl border border-border bg-card/85 p-5">
             <h2 className="mb-1 text-lg font-semibold text-foreground">Website Analytics</h2>

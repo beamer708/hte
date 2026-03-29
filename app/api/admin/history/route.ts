@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export const maxDuration = 10;
 
@@ -11,9 +13,9 @@ function unauthorized() {
   return NextResponse.json({ success: false, error: "Unauthorized." }, { status: 401 });
 }
 
-export async function POST(request: Request) {
-  const token = request.headers.get("x-admin-token");
-  if (!token || token !== process.env.ADMIN_PASSWORD) return unauthorized();
+export async function POST() {
+  const session = await getServerSession(authOptions);
+  if (!session) return unauthorized();
 
   const botUrl = process.env.BOT_API_URL;
   const secret = process.env.API_SECRET;
