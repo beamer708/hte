@@ -1,5 +1,29 @@
+/**
+ * DISCORD OAUTH2 CONFIGURATION
+ *
+ * REDIRECT URI — the exact URI below MUST be registered in the Discord Developer Portal:
+ *   Application → OAuth2 → Redirects
+ *
+ *   {NEXTAUTH_URL}/api/auth/callback/discord
+ *
+ * Example (production):  https://unityvault.xyz/api/auth/callback/discord
+ * Example (development):  http://localhost:3000/api/auth/callback/discord
+ *
+ * Required environment variables (server-side only — never expose to client):
+ *   DISCORD_CLIENT_ID          — OAuth2 application client ID
+ *   DISCORD_CLIENT_SECRET      — OAuth2 application client secret
+ *   DISCORD_GUILD_ID           — Unity Vault Discord server ID
+ *   DISCORD_ADMIN_ROLE_ID      — Role ID required to access the admin panel (1485445645270515825)
+ *   DISCORD_BETA_TESTER_ID     — User ID always granted access (1485237738277175457)
+ *   NEXTAUTH_SECRET            — Random secret for signing NextAuth tokens
+ *   NEXTAUTH_URL               — Canonical deployment URL (must match redirect URI base)
+ */
+
 import type { AuthOptions } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
+
+// Hard-coded beta tester — granted access regardless of guild role.
+const BETA_TESTER_ID = process.env.DISCORD_BETA_TESTER_ID ?? "1485237738277175457";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -15,8 +39,13 @@ export const authOptions: AuthOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ account }) {
+    async signIn({ account, profile }) {
       try {
+        const userId = (profile as { id?: string })?.id ?? account?.providerAccountId ?? "";
+
+        // Beta tester bypass — always grant access regardless of role.
+        if (userId === BETA_TESTER_ID) return true;
+
         const guildMemberRes = await fetch(
           `https://discord.com/api/users/@me/guilds/${process.env.DISCORD_GUILD_ID}/member`,
           {
@@ -28,8 +57,12 @@ export const authOptions: AuthOptions = {
 
         if (!guildMemberRes.ok) return "/admin/analytics?error=no_permission";
 
-        const member = await guildMemberRes.json() as { roles: string[] };
-        const hasRole = member.roles.includes(process.env.ADMIN_ROLE_ID!);
+        const member = (await guildMemberRes.json()) as { roles: string[] };
+        const adminRoleId =
+          process.env.DISCORD_ADMIN_ROLE_ID ??
+          process.env.ADMIN_ROLE_ID ?? // legacy fallback
+          "1485445645270515825";
+        const hasRole = member.roles.includes(adminRoleId);
 
         if (!hasRole) return "/admin/analytics?error=no_permission";
 

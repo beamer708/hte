@@ -5,18 +5,18 @@ import { guides } from "@/lib/guides";
 export default function CommunityGuidesPage() {
   return (
     <div className="py-12 sm:py-16">
-      <div className="page-container max-w-4xl">
+      <div className="page-container max-w-5xl">
         <div className="mb-10 rounded-3xl border border-border/70 bg-card/75 p-6 sm:p-8">
           <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/20 text-primary">
             <Icon name="books" className="text-2xl" />
           </div>
           <h1 className="section-heading">Helpful Guides</h1>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            Pick a guide topic and follow step-by-step instructions. More guides will be added over time.
+            Practical, structured guides for building and operating ERLC communities. Each guide is written for server owners and community managers.
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {guides.map((guide) => (
             <Link
               key={guide.id}
@@ -26,10 +26,10 @@ export default function CommunityGuidesPage() {
               <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
                 <Icon name={guide.icon} className="text-xl" />
               </div>
-              <h2 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+              <h2 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
                 {guide.title}
               </h2>
-              <p className="mt-2 text-sm text-muted-foreground">
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                 {guide.description}
               </p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
@@ -38,16 +38,6 @@ export default function CommunityGuidesPage() {
               </span>
             </Link>
           ))}
-
-          <div className="rounded-2xl border border-border bg-card/80 p-6">
-            <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-foreground/70">
-              <Icon name="clock" className="text-xl" />
-            </div>
-            <h2 className="text-lg font-semibold text-foreground">More guides coming soon</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              We'll continue adding practical guides for branding, visual systems, and community operations.
-            </p>
-          </div>
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">

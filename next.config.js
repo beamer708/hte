@@ -19,17 +19,16 @@ const nextConfig = {
       },
     ];
   },
-  // DISCORD_WEBHOOK_URL is intentionally NOT listed here so it is never
-  // exposed to the client. It is only read server-side from .env.local
-  // (which is gitignored). Keep the webhook URL in .env.local only.
+  // Server-side environment variables — NEVER listed in publicRuntimeConfig
+  // or NEXT_PUBLIC_ so they are never exposed to the browser bundle.
   //
-  // Required server-side environment variables for Discord OAuth2 (never expose to client):
-  //   DISCORD_CLIENT_ID
-  //   DISCORD_CLIENT_SECRET
-  //   DISCORD_GUILD_ID
-  //   ADMIN_ROLE_ID
+  // Required variables (see .env.example for full list):
+  //   DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET
+  //   DISCORD_GUILD_ID, DISCORD_ADMIN_ROLE_ID, DISCORD_BETA_TESTER_ID
+  //   DISCORD_SUGGESTION_WEBHOOK, DISCORD_APPLICATION_WEBHOOK, DISCORD_WEBHOOK_URL
+  //   ANTHROPIC_API_KEY
   //   NEXTAUTH_SECRET
-  //   NEXTAUTH_URL   (set to your canonical deployment URL, e.g. https://yourdomain.com)
+  //   NEXTAUTH_URL   (must match the base URL of the Discord redirect URI)
 };
 
 module.exports = nextConfig;

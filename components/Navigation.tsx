@@ -95,6 +95,14 @@ export default function Navigation() {
                   >
                     Templates
                   </Link>
+                  <Link
+                    href="/assistant"
+                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
+                    role="menuitem"
+                    onClick={() => setResourcesOpen(false)}
+                  >
+                    AI Assistant
+                  </Link>
                 </div>
               )}
             </div>
@@ -204,6 +212,13 @@ export default function Navigation() {
               onClick={() => setMobileOpen(false)}
             >
               Templates
+            </Link>
+            <Link
+              href="/assistant"
+              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
+              onClick={() => setMobileOpen(false)}
+            >
+              AI Assistant
             </Link>
             {isStaffApplicationOpen && (
               <Link
