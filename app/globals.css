@@ -2,45 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Brand Tokens ───────────────────────────────────────────────────────────
-   Unity visual identity — DM Sans 300 / 500, minimal, no decorative effects.
-   ──────────────────────────────────────────────────────────────────────────── */
 :root {
-  --background:        #0a0a09;
-  --foreground:        #f0ece0;
-  --muted-foreground:  rgba(240, 236, 224, 0.40);
-  --primary:           #f0ece0;
-  --primary-hover:     rgba(240, 236, 224, 0.85);
-  --border:            rgba(240, 236, 224, 0.08);
-  --card:              #111110;
-  --card-hover:        #161614;
-  --surface-2:         #111110;
-  --accent:            #f0ece0;
-  --accent-hover:      rgba(240, 236, 224, 0.85);
-  --ring:              rgba(240, 236, 224, 0.15);
-  --font-sans:         "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  /* Kept for legacy references */
-  --muted-text:        rgba(240, 236, 224, 0.40);
-  --secondary-text:    rgba(240, 236, 224, 0.40);
+  --background: #0A0A0A;
+  --foreground: #F5F0E8;
+  --muted-foreground: #7A7A7A;
+  --secondary-text: #7A7A7A;
+  --muted-text: #555555;
+  --primary: #F5F0E8;
+  --primary-hover: #E8E3DA;
+  --accent: #C9B99A;
+  --accent-hover: #B8A88A;
+  --border: #1F1F1F;
+  --card: #111111;
+  --card-hover: #141414;
+  --surface-2: #141414;
+  --ring: rgba(201, 185, 154, 0.25);
+  --font-sans: "Satoshi", "Satoshi Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* Dark theme class kept for compatibility. */
 .dark {
-  --background:        #0a0a09;
-  --foreground:        #f0ece0;
-  --muted-foreground:  rgba(240, 236, 224, 0.40);
-  --primary:           #f0ece0;
-  --primary-hover:     rgba(240, 236, 224, 0.85);
-  --border:            rgba(240, 236, 224, 0.08);
-  --card:              #111110;
-  --card-hover:        #161614;
-  --surface-2:         #111110;
-  --accent:            #f0ece0;
-  --accent-hover:      rgba(240, 236, 224, 0.85);
-  --ring:              rgba(240, 236, 224, 0.15);
-  --font-sans:         "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --background: #0A0A0A;
+  --foreground: #F5F0E8;
+  --muted-foreground: #7A7A7A;
+  --secondary-text: #7A7A7A;
+  --muted-text: #555555;
+  --primary: #F5F0E8;
+  --primary-hover: #E8E3DA;
+  --accent: #C9B99A;
+  --accent-hover: #B8A88A;
+  --border: #1F1F1F;
+  --card: #111111;
+  --card-hover: #141414;
+  --surface-2: #141414;
+  --ring: rgba(201, 185, 154, 0.25);
 }
 
-/* ─── Reset ──────────────────────────────────────────────────────────────── */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -61,13 +58,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* No decorative backgrounds — clean surface only */
+/* Fixed background decorative layers — do not scroll with content */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Geometric grid */
+  background-image:
+    linear-gradient(rgba(245, 240, 232, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 240, 232, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  /* Radial gradient blobs — upper-left and lower-right */
+  background:
+    radial-gradient(ellipse 70% 55% at 5% 10%, rgba(22, 17, 42, 0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 65% at 95% 90%, rgba(15, 18, 32, 0.18) 0%, transparent 70%);
+}
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    line-height: 1.15;
   }
 
   a {
@@ -76,151 +97,41 @@ body {
   }
 
   a:hover {
-    opacity: 0.75;
+    opacity: 0.8;
+    text-decoration: underline;
   }
 
   button {
-    transition: opacity 0.15s ease;
+    transition: all 0.2s ease;
   }
 }
 
-/* ─── Component Layer ────────────────────────────────────────────────────── */
 @layer components {
-
-  /* Primary CTA: cream fill, dark text, 2px radius */
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    background: var(--primary);
-    color: var(--background);
-    border: none;
-    border-radius: 2px;
-    padding: 10px 22px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: opacity 0.15s ease;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .btn-primary:hover {
-    opacity: 0.85;
-    text-decoration: none;
-  }
-
-  /* Ghost / secondary: transparent, border */
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  .gradient-bg-hero {
     background: transparent;
-    color: var(--muted-foreground);
-    border: 0.5px solid var(--border);
-    border-radius: 2px;
-    padding: 10px 22px;
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.15s ease, border-color 0.15s ease;
-    text-decoration: none;
-    white-space: nowrap;
+    position: relative;
   }
 
-  .btn-ghost:hover {
-    color: var(--foreground);
-    border-color: rgba(240, 236, 224, 0.20);
-    opacity: 1;
-    text-decoration: none;
+  .gradient-bg-hero::before {
+    display: none;
   }
 
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: transparent;
-    color: var(--muted-foreground);
-    border: 0.5px solid var(--border);
-    border-radius: 2px;
-    padding: 10px 22px;
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.15s ease, border-color 0.15s ease;
-    text-decoration: none;
-    white-space: nowrap;
+  .section-grid-overlay {
+    position: relative;
   }
 
-  .btn-secondary:hover {
-    color: var(--foreground);
-    border-color: rgba(240, 236, 224, 0.20);
-    opacity: 1;
-    text-decoration: none;
+  .section-grid-overlay::before {
+    display: none;
   }
 
-  /* Small badge / tag */
-  .resource-tag {
-    display: inline-block;
-    padding: 2px 6px;
-    border-radius: 2px;
-    background: var(--card);
-    border: 0.5px solid var(--border);
-    color: var(--muted-foreground);
-    font-size: 10px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.10em;
-  }
-
-  .section-rule-label {
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--muted-foreground);
-    white-space: nowrap;
-  }
-
-  /* Legacy heading helpers — kept for inner pages */
-  .section-heading {
-    font-size: 2rem;
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    color: var(--foreground);
-    line-height: 1.2;
-  }
-
-  .section-subheading {
-    margin-top: 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--muted-foreground);
-  }
-
-  .page-container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 76rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  .section-spacing {
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-
-  /* Legacy card classes — kept for inner pages */
   .gradient-border {
     background: var(--card);
-    border-radius: 2px;
-    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .gradient-border::before {
+    display: none;
   }
 
   .gradient-card {
@@ -228,62 +139,155 @@ body {
   }
 
   .card-hover-lift {
-    transition: border-color 0.15s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
   }
 
   .card-hover-lift:hover {
-    border-color: rgba(240, 236, 224, 0.16);
+    background: var(--card-hover);
+    border-color: #2A2A2A;
   }
 
   .surface-panel {
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     background: var(--surface-2);
   }
 
+  /* Resource card: base style used by all three card types */
   .resource-card {
     background: var(--card);
-    border: 0.5px solid var(--border);
-    border-radius: 2px;
-    transition: border-color 0.15s ease;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .resource-card:hover {
-    border-color: rgba(240, 236, 224, 0.16);
+    border-color: #2A2A2A;
+    background: var(--card-hover);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   }
 
-  /* Inner-page card containers keep minimal radius */
-  .rounded-xl, .rounded-2xl, .rounded-3xl {
-    border-radius: 2px;
+  /* Small category / type label badge */
+  .resource-tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background: var(--accent);
+    color: #0A0A0A;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Section divider label */
+  .section-rule-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium text-background transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-accent;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--primary);
+    border: 1px solid var(--primary);
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-hover);
+    opacity: 1;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-accent;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    background: transparent;
+  }
+
+  .btn-ghost:hover {
+    background: var(--card-hover);
+    border-color: #2A2A2A;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-accent;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-color: var(--border);
+    background: transparent;
+    color: var(--foreground);
+  }
+
+  .btn-secondary:hover {
+    border-color: #2A2A2A;
+    background: var(--card-hover);
+  }
+
+  .section-heading {
+    @apply text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem];
+  }
+
+  .section-subheading {
+    @apply mt-3 text-base max-w-2xl leading-relaxed;
+    color: var(--muted-foreground);
+  }
+
+  .page-container {
+    @apply mx-auto max-w-[76rem] px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-20 sm:py-24 lg:py-28;
   }
 }
 
-/* ─── Utilities ──────────────────────────────────────────────────────────── */
 @layer utilities {
-  .text-balance { text-wrap: balance; }
+  .text-balance {
+    text-wrap: balance;
+  }
 
   .animate-in-fade {
-    animation: fadeIn 0.3s ease forwards;
+    animation: fadeIn 0.4s ease forwards;
   }
 
   .animate-in-up {
-    animation: fadeInUp 0.4s ease forwards;
+    animation: fadeInUp 0.5s ease forwards;
   }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Typing indicator */
+/* Typing indicator — three dots fade in/out sequentially */
 @keyframes typing-dot {
   0%, 100% { opacity: 0.2; }
-  50%       { opacity: 1; }
+  50% { opacity: 1; }
 }
 
 .typing-dot {
@@ -292,25 +296,34 @@ body {
 .typing-dot:nth-child(2) { animation-delay: 0.2s; }
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-/* Skeleton */
+/* Skeleton loader animation */
 @keyframes shimmer {
-  0%   { background-position: -600px 0; }
-  100% { background-position:  600px 0; }
+  0% { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
 }
 
 .skeleton {
-  background: linear-gradient(90deg, var(--card) 25%, var(--card-hover) 50%, var(--card) 75%);
+  background: linear-gradient(90deg, #111111 25%, #1a1a1a 50%, #111111 75%);
   background-size: 600px 100%;
   animation: shimmer 1.6s infinite linear;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
-/* ─── Scroll animation ───────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Scroll-triggered animation system ──────────────────────────────────── */
+
 @media (prefers-reduced-motion: no-preference) {
   .animate-on-scroll {
     opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
   .animate-on-scroll.in-view {
@@ -318,9 +331,10 @@ body {
     transform: translateY(0);
   }
 
+  /* Scale variant — used by stat items */
   .animate-on-scroll.is-scale {
     opacity: 0;
-    transform: scale(0.97);
+    transform: scale(0.95);
   }
 
   .animate-on-scroll.is-scale.in-view {
@@ -330,6 +344,7 @@ body {
 }
 
 /* ─── Loading screen ─────────────────────────────────────────────────────── */
+
 .loading-screen {
   position: fixed;
   inset: 0;
@@ -338,7 +353,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
 
 .loading-screen--out {
@@ -348,8 +363,8 @@ body {
 
 .loading-logo {
   opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: scale(0.85);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .loading-logo--visible {
@@ -357,16 +372,8 @@ body {
   transform: scale(1);
 }
 
-/* ─── Step numbers ───────────────────────────────────────────────────────── */
-.step-num {
-  color: rgba(240, 236, 224, 0.08);
-}
+/* ─── Decorative step numbers ────────────────────────────────────────────── */
 
-/* ─── Reduced motion ─────────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+.step-num {
+  color: rgba(245, 240, 232, 0.12);
 }
