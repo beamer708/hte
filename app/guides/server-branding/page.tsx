@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Designing Server Branding | Unity Vault Guides",
+  title: "Designing Server Branding | Unity Guides",
   description: "How to design cohesive server branding — logo, colors, and uniform guide — for your ERLC community.",
 };
 

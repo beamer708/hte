@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Blacklists and Disciplinary Action | Unity Vault Guides",
+  title: "Blacklists and Disciplinary Action | Unity Guides",
   description: "How to handle blacklists and disciplinary action with consistency, documentation, and fairness.",
 };
 

@@ -1,261 +1,153 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
-import Icon from "@/components/Icon";
-import { NAV } from "@/lib/site-structure";
-import uLogo from "@/Media/ULogo.svg";
 
 export default function Navigation() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [resourcesOpen, setResourcesOpen] = useState(false);
-  const [communityOpen, setCommunityOpen] = useState(false);
-  const isStaffApplicationOpen =
-    process.env.NEXT_PUBLIC_STAFF_APPLICATION_OPEN === "true" ||
-    process.env.NEXT_PUBLIC_STAFF_APPLICATION_OPEN === "1";
-
-  const mainLinks = [
-    { ...NAV.support },
-    { ...NAV.about },
-  ];
+  const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background">
+    <nav
+      style={{
+        borderBottom: "0.5px solid rgba(240,236,224,0.08)",
+        backgroundColor: "#0a0a09",
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+      }}
+    >
       <div className="page-container">
-        <div className="flex h-20 items-center justify-between">
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "52px" }}>
+
+          {/* Wordmark */}
           <Link
             href="/"
-            className="flex items-center gap-3 transition-opacity hover:opacity-90"
+            style={{
+              fontSize: "15px",
+              fontWeight: 500,
+              letterSpacing: "0.08em",
+              color: "var(--foreground)",
+              textDecoration: "none",
+              textTransform: "uppercase",
+            }}
           >
-            <Image
-              src={uLogo}
-              alt=""
-              width={34}
-              height={34}
-              className="shrink-0"
-            />
-            <span className="text-lg font-medium tracking-[0.14em] text-foreground uppercase">
-              Unity Vault
-            </span>
+            Unity
           </Link>
 
-          <div className="hidden lg:flex lg:items-center lg:gap-1.5">
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => {
-                  setResourcesOpen((open) => !open);
-                  setCommunityOpen(false);
-                }}
-                className="btn-ghost rounded-lg py-2"
-                aria-expanded={resourcesOpen}
-                aria-haspopup="menu"
-              >
-                {NAV.resources.label}
-                <Icon
-                  name="arrow-right"
-                  className={`text-xs transition-transform ${resourcesOpen ? "rotate-90" : ""}`}
-                />
-              </button>
-              {resourcesOpen && (
-                <div
-                  className="absolute left-0 top-full mt-3 w-60 rounded-lg border border-border bg-card p-2"
-                  role="menu"
-                >
-                  <Link
-                    href="/resources"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    Resource Vault
-                  </Link>
-                  <Link
-                    href="/community-guides"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    Helpful Guides
-                  </Link>
-                  <Link
-                    href="/tools"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    Tools
-                  </Link>
-                  <Link
-                    href="/templates"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    Templates
-                  </Link>
-                  <Link
-                    href="/assistant"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    AI Assistant
-                  </Link>
-                </div>
-              )}
-            </div>
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => {
-                  setCommunityOpen((open) => !open);
-                  setResourcesOpen(false);
-                }}
-                className="btn-ghost rounded-lg py-2"
-                aria-expanded={communityOpen}
-                aria-haspopup="menu"
-              >
-                Community
-                <Icon
-                  name="arrow-right"
-                  className={`text-xs transition-transform ${communityOpen ? "rotate-90" : ""}`}
-                />
-              </button>
-              {communityOpen && (
-                <div
-                  className="absolute left-0 top-full mt-3 w-60 rounded-lg border border-border bg-card p-2"
-                  role="menu"
-                >
-                  {isStaffApplicationOpen && (
-                    <Link
-                      href={NAV.staffApplication.href}
-                      className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                      role="menuitem"
-                      onClick={() => setCommunityOpen(false)}
-                    >
-                      Staff Application
-                    </Link>
-                  )}
-                  <Link
-                    href="/resource-suggestion"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setCommunityOpen(false)}
-                  >
-                    Submit a Suggestion
-                  </Link>
-                </div>
-              )}
-            </div>
-            {mainLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="btn-ghost rounded-lg py-2"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href={NAV.resources.href}
-              className="ml-2 btn-primary px-5 py-2.5"
-            >
-              Enter Vault
-            </Link>
+          {/* Desktop nav */}
+          <div style={{ display: "flex", alignItems: "center", gap: "28px" }} className="hidden lg:flex">
+            <NavLink href="/resources">Resources</NavLink>
+            <NavLink href="/community-guides">Guides</NavLink>
+            <NavLink href="/assistant">Assistant</NavLink>
+            <FreeBadge />
           </div>
 
+          {/* Mobile toggle */}
           <button
             type="button"
-            className="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-border/60 text-foreground hover:bg-white/5 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="lg:hidden"
+            style={{
+              background: "none",
+              border: "none",
+              padding: "6px",
+              cursor: "pointer",
+              color: "var(--muted-foreground)",
+            }}
           >
-            {mobileOpen ? (
-              <Icon name="cross" className="text-xl" />
+            {open ? (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+              </svg>
             ) : (
-              <Icon name="menu-burger" className="text-xl" />
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+              </svg>
             )}
           </button>
         </div>
       </div>
 
-      {mobileOpen && (
-        <div className="lg:hidden border-t border-border bg-background animate-in-fade">
-          <div className="page-container space-y-1 py-5">
-            <Link
-              href="/resources"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              Resource Vault
-            </Link>
-            <Link
-              href="/community-guides"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              Helpful Guides
-            </Link>
-            <Link
-              href="/tools"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              Tools
-            </Link>
-            <Link
-              href="/templates"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              Templates
-            </Link>
-            <Link
-              href="/assistant"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              AI Assistant
-            </Link>
-            {isStaffApplicationOpen && (
-              <Link
-                href={NAV.staffApplication.href}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-                onClick={() => setMobileOpen(false)}
-              >
-                Staff Application
-              </Link>
-            )}
-            <Link
-              href="/resource-suggestion"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              Submit a Suggestion
-            </Link>
-            {mainLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href={NAV.resources.href}
-              className="mt-2 block rounded-lg border border-border bg-primary px-4 py-3 text-center text-base font-medium text-background"
-              onClick={() => setMobileOpen(false)}
-            >
-              Enter Vault
-            </Link>
+      {/* Mobile menu */}
+      {open && (
+        <div
+          className="lg:hidden"
+          style={{
+            borderTop: "0.5px solid rgba(240,236,224,0.08)",
+            backgroundColor: "#0a0a09",
+            padding: "20px 24px 24px",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+            <MobileNavLink href="/resources" onClick={() => setOpen(false)}>Resources</MobileNavLink>
+            <MobileNavLink href="/community-guides" onClick={() => setOpen(false)}>Guides</MobileNavLink>
+            <MobileNavLink href="/assistant" onClick={() => setOpen(false)}>Assistant</MobileNavLink>
+            <div style={{ paddingTop: "4px" }}>
+              <FreeBadge />
+            </div>
           </div>
         </div>
       )}
     </nav>
+  );
+}
+
+function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      style={{
+        fontSize: "13px",
+        fontWeight: 300,
+        letterSpacing: "0.03em",
+        color: "var(--muted-foreground)",
+        textDecoration: "none",
+        transition: "color 0.15s ease",
+      }}
+      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)"; }}
+      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)"; }}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function MobileNavLink({ href, onClick, children }: { href: string; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      style={{
+        fontSize: "14px",
+        fontWeight: 300,
+        letterSpacing: "0.03em",
+        color: "var(--muted-foreground)",
+        textDecoration: "none",
+      }}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function FreeBadge() {
+  return (
+    <span
+      style={{
+        fontSize: "10px",
+        fontWeight: 500,
+        letterSpacing: "0.14em",
+        textTransform: "uppercase",
+        color: "var(--foreground)",
+        backgroundColor: "var(--card)",
+        border: "0.5px solid rgba(240,236,224,0.12)",
+        borderRadius: "2px",
+        padding: "3px 7px",
+        display: "inline-block",
+      }}
+    >
+      Free
+    </span>
   );
 }

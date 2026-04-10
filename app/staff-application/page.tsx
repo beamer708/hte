@@ -145,7 +145,7 @@ export default function StaffApplicationPage() {
           </div>
           <h1 className="section-heading">Community Team &amp; Beta Tester Application</h1>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            Your work helps keep Unity Vault organized, responsive, and growing. Apply for one role or both in under 2 minutes.
+            Your work helps keep Unity organized, responsive, and growing. Apply for one role or both in under 2 minutes.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs text-muted-foreground">

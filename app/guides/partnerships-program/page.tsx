@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Creating a Partnerships Program | Unity Vault Guides",
+  title: "Creating a Partnerships Program | Unity Guides",
   description: "How to build a partnerships program that grows your network with aligned, well-managed community agreements.",
 };
 

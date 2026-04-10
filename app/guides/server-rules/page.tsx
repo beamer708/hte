@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Server Rules and Regulations | Unity Vault Guides",
+  title: "Server Rules and Regulations | Unity Guides",
   description: "How to write clear, enforceable server rules and regulations that set consistent expectations.",
 };
 

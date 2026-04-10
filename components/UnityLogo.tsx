@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Official Unity Vault logo. Use exclusively as the primary brand mark.
+ * Official Unity logo. Use exclusively as the primary brand mark.
  * Do not recolor, distort, stretch, or add effects. Maintain aspect ratio.
  */
 interface UnityLogoProps {
@@ -35,7 +35,7 @@ export default function UnityLogo({
       preserveAspectRatio="xMidYMid meet"
       aria-hidden={ariaHidden}
       role={ariaHidden ? undefined : "img"}
-      aria-label={ariaHidden ? undefined : "Unity Vault"}
+      aria-label={ariaHidden ? undefined : "Unity"}
     >
       <path
         fill="#2463eb"

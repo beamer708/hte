@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Livery and Vehicle Design Basics | Unity Vault Guides",
+  title: "Livery and Vehicle Design Basics | Unity Guides",
   description: "How to design liveries and vehicle assets that are visually consistent and recognizable across your ERLC server.",
 };
 

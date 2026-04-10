@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Setting Up a Discord Server | Unity Vault Guides",
+  title: "Setting Up a Discord Server | Unity Guides",
   description: "How to set up a Discord server for your ERLC community — channels, roles, permissions, and structure.",
 };
 

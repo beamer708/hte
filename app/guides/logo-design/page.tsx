@@ -291,7 +291,7 @@ export default function LogoDesignGuidePage() {
           <div className="mb-6 animate-on-scroll">
             <h2 className="text-2xl font-semibold text-foreground">Curated Resources</h2>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              Resources from the Unity Vault library that apply directly to logo design
+              Resources from the Unity library that apply directly to logo design
               and brand identity work.
             </p>
           </div>

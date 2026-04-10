@@ -3,7 +3,7 @@
  * Single source of truth for nav, footer, and resource hub.
  */
 
-export const SITE_NAME = "Unity Vault";
+export const SITE_NAME = "Unity";
 
 /** Top-level nav: Resources, Support, Status, About. Resources = single page (assistant). */
 export const NAV = {

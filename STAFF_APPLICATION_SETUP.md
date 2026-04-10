@@ -1,6 +1,6 @@
 # Staff Application System Setup Guide
 
-This guide walks you through setting up the Discord webhook integration for the Unity Vault staff application system.
+This guide walks you through setting up the Discord webhook integration for the Unity staff application system.
 
 ## Overview
 
@@ -10,7 +10,7 @@ The staff application form allows users to submit applications that are automati
 
 ### Step 1: Access Discord Server Settings
 
-1. Open the Unity Vault Discord server (Server ID: `1251469666787000343`)
+1. Open the Unity Discord server (Server ID: `1251469666787000343`)
 2. Right-click on the server name in the left sidebar
 3. Select **Server Settings** from the context menu
 
@@ -27,7 +27,7 @@ The staff application form allows users to submit applications that are automati
 
 ### Step 4: Configure Webhook
 
-1. **Name**: Enter a descriptive name like `Unity Vault Applications`
+1. **Name**: Enter a descriptive name like `Unity Applications`
 2. **Channel**: Click the channel dropdown and select the staff review channel
    - Channel ID: `1466217442954186931`
    - This is the channel where applications will be posted

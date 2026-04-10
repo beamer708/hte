@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Running Patrols and Events | Unity Vault Guides",
+  title: "Running Patrols and Events | Unity Guides",
   description: "How to plan and run in-game patrols and events that are coordinated, purposeful, and engaging.",
 };
 

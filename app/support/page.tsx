@@ -26,7 +26,7 @@ export default function SupportPage() {
             <div>
               <h2 className="font-semibold text-foreground">Discord</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Join the Unity Vault Discord for community support, updates, and discussion.
+                Join the Unity Discord for community support, updates, and discussion.
               </p>
               <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary">
                 Join server
@@ -64,7 +64,7 @@ export default function SupportPage() {
             <div>
               <h2 className="font-semibold text-foreground">Staff Application</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Interested in helping run Unity Vault? Apply to join the team.
+                Interested in helping run Unity? Apply to join the team.
               </p>
               <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary">
                 Apply
@@ -83,7 +83,7 @@ export default function SupportPage() {
             <div>
               <h2 className="font-semibold text-foreground">Suggest a Resource</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Recommend a resource to add to Unity Vault. Suggestions go to Discord for discussion and approval.
+                Recommend a resource to add to Unity. Suggestions go to Discord for discussion and approval.
               </p>
               <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary">
                 Submit suggestion

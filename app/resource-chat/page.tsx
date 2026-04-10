@@ -87,7 +87,7 @@ export default function ResourceChatPage() {
             <h1 className="text-2xl font-semibold text-foreground">AI Assistant</h1>
             <p className="mt-2 text-sm text-muted-foreground max-w-xl">
               Ask anything about building, designing, or growing your ERLC server.
-              Powered by Unity Vault.
+              Powered by Unity.
             </p>
           </div>
         </div>

@@ -13,7 +13,7 @@ export default function ShutdownNotice() {
             </span>
             <Image
               src={uLogo}
-              alt="Unity Vault"
+              alt="Unity"
               width={86}
               height={86}
               className="mx-auto mt-5 opacity-95"
@@ -23,7 +23,7 @@ export default function ShutdownNotice() {
               Website Temporarily Unavailable
             </h1>
             <p className="mx-auto mt-3 max-w-xl leading-relaxed text-muted-foreground">
-              Unity Vault is temporarily offline while scheduled maintenance and platform improvements are completed.
+              Unity is temporarily offline while scheduled maintenance and platform improvements are completed.
               Access will be restored as soon as updates are finalized.
             </p>
           </div>

@@ -69,7 +69,7 @@ export default function PartnershipPage() {
       }
 
       setSuccess(
-        "Your partnership application has been submitted. The Unity Vault team will review it shortly."
+        "Your partnership application has been submitted. The Unity team will review it shortly."
       );
       setServerName("");
       setInviteLink("");
@@ -91,10 +91,10 @@ export default function PartnershipPage() {
           <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/20 text-primary">
             <Icon name="users" className="text-2xl" />
           </div>
-          <h1 className="section-heading">Partner With Unity Vault</h1>
+          <h1 className="section-heading">Partner With Unity</h1>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            Apply to be featured on Unity Vault as a trusted resource or community for the ERLC
-            community. All applications are reviewed by the Unity Vault team.
+            Apply to be featured on Unity as a trusted resource or community for the ERLC
+            community. All applications are reviewed by the Unity team.
           </p>
         </div>
 

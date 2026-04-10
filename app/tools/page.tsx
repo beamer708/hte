@@ -33,7 +33,7 @@ export default function ToolsPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
             The best tools for designing, developing, and building your ERLC server or project.
-            Curated by Unity Vault.
+            Curated by Unity.
           </p>
         </div>
 

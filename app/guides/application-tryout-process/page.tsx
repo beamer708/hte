@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Application and Tryout Process | Unity Vault Guides",
+  title: "Application and Tryout Process | Unity Guides",
   description: "How to create a structured application and tryout process that filters for quality and commitment.",
 };
 

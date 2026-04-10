@@ -40,7 +40,7 @@ async function sendToDiscordWebhook(
             : []),
         ],
         timestamp: new Date().toISOString(),
-        footer: { text: "Unity Vault · Staff Application Form" },
+        footer: { text: "Unity · Staff Application Form" },
       },
     ],
   };

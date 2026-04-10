@@ -256,7 +256,7 @@ export default function AdminAnalyticsPage() {
         <div className="mb-8 flex flex-wrap items-start justify-between gap-4 rounded-3xl border border-border/70 bg-card/80 p-6 sm:p-8">
           <div>
             <h1 className="section-heading">Admin Dashboard</h1>
-            <p className="section-subheading mt-1">Unity Vault operations overview.</p>
+            <p className="section-subheading mt-1">Unity operations overview.</p>
           </div>
           <div className="flex gap-3">
             <button

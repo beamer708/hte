@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "10-Codes and Radio Communication | Unity Vault Guides",
+  title: "10-Codes and Radio Communication | Unity Guides",
   description: "How to use 10-codes and radio communication standards for structured, professional in-game operations.",
 };
 

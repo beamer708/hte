@@ -34,7 +34,7 @@ async function sendToDiscordWebhook(
           { name: "Discord ID", value: data.discordId, inline: true },
         ],
         timestamp: new Date().toISOString(),
-        footer: { text: "Unity Vault · Suggestion Form" },
+        footer: { text: "Unity · Suggestion Form" },
       },
     ],
   };
