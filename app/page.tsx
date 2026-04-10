@@ -170,16 +170,7 @@ export default function Home() {
           >
             <Link
               href="/resources"
-              style={{
-                fontSize: "11px",
-                fontWeight: 300,
-                letterSpacing: "0.06em",
-                color: "var(--muted-foreground)",
-                textDecoration: "none",
-                transition: "color 0.15s ease",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted-foreground)")}
+              className="view-all-link"
             >
               View all resources →
             </Link>
@@ -194,6 +185,26 @@ export default function Home() {
             grid-template-columns: 1fr !important;
           }
         }
+        .view-all-link {
+          font-size: 11px;
+          font-weight: 300;
+          letter-spacing: 0.06em;
+          color: var(--muted-foreground);
+          text-decoration: none;
+          transition: color 0.15s ease;
+        }
+        .view-all-link:hover { color: var(--foreground); }
+        .view-guide-link {
+          flex-shrink: 0;
+          font-size: 11px;
+          font-weight: 300;
+          letter-spacing: 0.06em;
+          color: var(--muted-foreground);
+          text-decoration: none;
+          white-space: nowrap;
+          transition: color 0.15s ease;
+        }
+        .view-guide-link:hover { color: var(--foreground); }
       `}</style>
     </div>
   );
@@ -294,18 +305,7 @@ function ResourceRow({ category, title }: { category: string; title: string }) {
       </div>
       <Link
         href="/community-guides"
-        style={{
-          flexShrink: 0,
-          fontSize: "11px",
-          fontWeight: 300,
-          letterSpacing: "0.06em",
-          color: "var(--muted-foreground)",
-          textDecoration: "none",
-          whiteSpace: "nowrap",
-          transition: "color 0.15s ease",
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted-foreground)")}
+        className="view-guide-link"
       >
         View guide
       </Link>
