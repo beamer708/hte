@@ -41,6 +41,13 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ blacklist });
   }
 
+  if (action === "staff_apps") {
+    const config = await prisma.siteConfig.findUnique({
+      where: { key: "STAFF_APPS_OPEN" },
+    });
+    return NextResponse.json({ staffAppsOpen: config?.value === "true" });
+  }
+
   // Default: return site config shutdown state
   const config = await prisma.siteConfig.findUnique({
     where: { key: "site_shutdown" },
@@ -68,6 +75,16 @@ export async function POST(req: NextRequest) {
       create: { key: "site_shutdown", value: newValue },
     });
     return NextResponse.json({ success: true, isShutdown: body.value });
+  }
+
+  if (body.action === "toggle_staff_apps") {
+    const newValue = body.value ? "true" : "false";
+    await prisma.siteConfig.upsert({
+      where: { key: "STAFF_APPS_OPEN" },
+      update: { value: newValue },
+      create: { key: "STAFF_APPS_OPEN", value: newValue },
+    });
+    return NextResponse.json({ success: true, staffAppsOpen: body.value });
   }
 
   if (body.action === "revoke" && body.discordId) {

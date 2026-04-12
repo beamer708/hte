@@ -43,6 +43,8 @@ export default function AdminBetaPage() {
 
   const [isShutdown, setIsShutdown] = useState<boolean | null>(null);
   const [toggling, setToggling] = useState(false);
+  const [staffAppsOpen, setStaffAppsOpen] = useState<boolean | null>(null);
+  const [togglingStaffApps, setTogglingStaffApps] = useState(false);
   const [testers, setTesters] = useState<BetaTester[]>([]);
   const [logs, setLogs] = useState<BetaLog[]>([]);
   const [blacklist, setBlacklist] = useState<Blacklisted[]>([]);
@@ -52,19 +54,22 @@ export default function AdminBetaPage() {
   const loadData = useCallback(async () => {
     setLoading(true);
     try {
-      const [configRes, testersRes, logsRes, blacklistRes] = await Promise.all([
+      const [configRes, staffAppsRes, testersRes, logsRes, blacklistRes] = await Promise.all([
         fetch("/api/admin/beta"),
+        fetch("/api/admin/beta?action=staff_apps"),
         fetch("/api/admin/beta?action=testers"),
         fetch("/api/admin/beta?action=logs"),
         fetch("/api/admin/beta?action=blacklist"),
       ]);
 
       const config = (await configRes.json()) as { isShutdown: boolean };
+      const staffAppsData = (await staffAppsRes.json()) as { staffAppsOpen: boolean };
       const testersData = (await testersRes.json()) as { testers: BetaTester[] };
       const logsData = (await logsRes.json()) as { logs: BetaLog[] };
       const blacklistData = (await blacklistRes.json()) as { blacklist: Blacklisted[] };
 
       setIsShutdown(config.isShutdown);
+      setStaffAppsOpen(staffAppsData.staffAppsOpen ?? false);
       setTesters(testersData.testers ?? []);
       setLogs(logsData.logs ?? []);
       setBlacklist(blacklistData.blacklist ?? []);
@@ -91,6 +96,21 @@ export default function AdminBetaPage() {
       if (res.ok) setIsShutdown(!isShutdown);
     } finally {
       setToggling(false);
+    }
+  }
+
+  async function toggleStaffApps() {
+    if (staffAppsOpen === null) return;
+    setTogglingStaffApps(true);
+    try {
+      const res = await fetch("/api/admin/beta", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "toggle_staff_apps", value: !staffAppsOpen }),
+      });
+      if (res.ok) setStaffAppsOpen(!staffAppsOpen);
+    } finally {
+      setTogglingStaffApps(false);
     }
   }
 
@@ -153,31 +173,60 @@ export default function AdminBetaPage() {
             <h2 className="text-base font-semibold text-foreground">Site Shutdown</h2>
           </div>
 
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="text-sm text-foreground">
-                {isShutdown
-                  ? "Site is currently in shutdown / beta-only mode."
-                  : "Site is publicly accessible."}
-              </p>
-              <p className="mt-0.5 text-xs text-muted-foreground">
-                This writes to the database. The middleware checks this value on every request.
-              </p>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-sm text-foreground">
+                  {isShutdown
+                    ? "Site is currently in shutdown / beta-only mode."
+                    : "Site is publicly accessible."}
+                </p>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  This writes to the database. The middleware checks this value on every request.
+                </p>
+              </div>
+              <button
+                onClick={() => void toggleShutdown()}
+                disabled={toggling || isShutdown === null}
+                className="flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-card-hover disabled:opacity-50"
+              >
+                <i
+                  className={isShutdown ? "fi fi-sr-toggle-on" : "fi fi-br-toggle-off"}
+                  style={{
+                    fontSize: "20px",
+                    color: isShutdown ? "#52D973" : "var(--muted-foreground)",
+                  }}
+                />
+                {isShutdown ? "Shutdown ON" : "Shutdown OFF"}
+              </button>
             </div>
-            <button
-              onClick={() => void toggleShutdown()}
-              disabled={toggling || isShutdown === null}
-              className="flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-card-hover disabled:opacity-50"
-            >
-              <i
-                className={isShutdown ? "fi fi-sr-toggle-on" : "fi fi-br-toggle-off"}
-                style={{
-                  fontSize: "20px",
-                  color: isShutdown ? "#52D973" : "var(--muted-foreground)",
-                }}
-              />
-              {isShutdown ? "Shutdown ON" : "Shutdown OFF"}
-            </button>
+
+            <div className="border-t border-border/50 pt-4 flex items-center justify-between gap-4">
+              <div>
+                <p className="text-sm text-foreground">
+                  {staffAppsOpen
+                    ? "Staff applications are currently open."
+                    : "Staff applications are currently closed."}
+                </p>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  Controls whether the staff application form is visible to visitors.
+                </p>
+              </div>
+              <button
+                onClick={() => void toggleStaffApps()}
+                disabled={togglingStaffApps || staffAppsOpen === null}
+                className="flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-card-hover disabled:opacity-50"
+              >
+                <i
+                  className={staffAppsOpen ? "fi fi-sr-toggle-on" : "fi fi-br-toggle-off"}
+                  style={{
+                    fontSize: "20px",
+                    color: staffAppsOpen ? "#52D973" : "var(--muted-foreground)",
+                  }}
+                />
+                Staff Applications {staffAppsOpen ? "ON" : "OFF"}
+              </button>
+            </div>
           </div>
         </section>
 
