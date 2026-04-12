@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { headers } from "next/headers";
 import "./globals.css";
+// Flaticon UIcons — served from node_modules (no CSP issues, no external CDN dependency)
+import "@flaticon/flaticon-uicons/css/bold/rounded.css";
+import "@flaticon/flaticon-uicons/css/solid/rounded.css";
+import "@flaticon/flaticon-uicons/css/regular/rounded.css";
 import MainLayout from "@/components/MainLayout";
 import ShutdownNotice from "@/components/ShutdownNotice";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
@@ -45,21 +49,6 @@ export default async function RootLayout({
       <head>
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,500&display=swap" />
-        {/* Flaticon UIcons — Bold Rounded (UI elements, nav, buttons) */}
-        <link
-          rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
-        />
-        {/* Flaticon UIcons — Solid Rounded (active states, status, emphasis) */}
-        <link
-          rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
-        />
-        {/* Flaticon UIcons — Filled Rounded (decorative, cards, empty states) */}
-        <link
-          rel="stylesheet"
-          href="https://cdn-uicons.flaticon.com/2.6.0/uicons-filled-rounded/css/uicons-filled-rounded.css"
-        />
       </head>
       <body className="antialiased">
         {!isShutdown && <LoadingScreen />}
