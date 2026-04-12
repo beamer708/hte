@@ -1,4 +1,3 @@
-import { ExternalLink } from "lucide-react";
 import ScrollAnimator from "@/components/ScrollAnimator";
 
 const DESIGN_TOOLS = [
@@ -82,7 +81,7 @@ export default function ToolsPage() {
                     className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card focus:outline-none focus:ring-2 focus:ring-accent/25"
                   >
                     Visit
-                    <ExternalLink className="h-3.5 w-3.5" strokeWidth={1.8} />
+                    <i className="fi fi-br-arrow-up-right" style={{ fontSize: "14px", color: "currentColor" }} />
                   </a>
                 </div>
               </div>

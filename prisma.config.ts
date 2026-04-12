@@ -7,9 +7,9 @@ import { defineConfig } from "prisma/config";
 loadEnv({ path: ".env.local" });
 loadEnv();
 
-const databaseUrl = process.env["DATABASE_URL"];
+const databaseUrl = process.env["STORAGE_PRISMA_DATABASE_URL"];
 if (!databaseUrl || !databaseUrl.trim()) {
-  throw new Error("DATABASE_URL is required for Prisma configuration.");
+  throw new Error("STORAGE_PRISMA_DATABASE_URL is required for Prisma configuration.");
 }
 
 export default defineConfig({

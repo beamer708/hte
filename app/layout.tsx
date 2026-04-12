@@ -45,6 +45,16 @@ export default async function RootLayout({
       <head>
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,500&display=swap" />
+        {/* Flaticon UIcons — Bold Rounded (UI elements, nav, buttons) */}
+        <link
+          rel="stylesheet"
+          href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
+        />
+        {/* Flaticon UIcons — Solid Rounded (active states, status, emphasis) */}
+        <link
+          rel="stylesheet"
+          href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
+        />
       </head>
       <body className="antialiased">
         {!isShutdown && <LoadingScreen />}

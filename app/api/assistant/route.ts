@@ -1,31 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
 
 export const maxDuration = 30;
 
-const SYSTEM_PROMPT = `You are the @howtoerlc AI Assistant. @howtoerlc is a curated resource platform for ERLC (Emergency Response: Liberty County) communities.
-
-Your role is to assist server owners, designers, and community managers with structured guidance across four categories only:
-1. Discord server setup and structure
-2. Graphic design for ERLC communities
-3. Web design for ERLC communities
-4. Server management and operations
-
-If a user asks about anything outside these four categories, respond with: "This assistant is scoped to ERLC community building. I can help with Discord setup, graphic design, web design, or server management."
-
-Tone: calm, structured, professional, minimal. No hype. No slang. No gaming language.
-
-After each response, suggest one concrete next step relevant to the user's ERLC server or project. Label it clearly as "Next step:".
-
-@howtoerlc does not create tutorials. It curates resources and provides structured guidance. Do not imply otherwise.`;
-
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+const SYSTEM_CONTEXT = `You are the official assistant for @howtoerlc, a curated resource vault for ERLC (Emergency Response: Liberty County) communities. Your role is to assist server owners, designers, and community managers with structured guidance across four categories only: Discord server setup and structure, graphic design for ERLC communities, web design for ERLC communities, and server management and operations. If asked about anything outside these four categories, respond: "This assistant is scoped to ERLC community building. I can help with Discord setup, graphic design, web design, or server management." Tone: calm, structured, professional, minimal. No hype. No slang. No gaming language. After each response, suggest one concrete next step relevant to the user's ERLC server or project, labelled clearly as "Next step:".`;
 
 interface Message {
   role: "user" | "assistant";
   content: string;
+}
+
+function buildPrompt(messages: Message[]): string {
+  // Mistral instruction format: [INST] ... [/INST]
+  let prompt = `<s>[INST] ${SYSTEM_CONTEXT}\n\n`;
+  for (let i = 0; i < messages.length; i++) {
+    const msg = messages[i];
+    if (msg.role === "user") {
+      if (i === 0) {
+        prompt += `${msg.content} [/INST]`;
+      } else {
+        prompt += ` [INST] ${msg.content} [/INST]`;
+      }
+    } else {
+      prompt += ` ${msg.content}</s>`;
+    }
+  }
+  return prompt;
 }
 
 export async function POST(request: NextRequest) {
@@ -42,7 +41,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Messages array is required." }, { status: 400 });
   }
 
-  // Validate message structure
   const valid = messages.every(
     (m) =>
       m &&
@@ -54,25 +52,60 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid message format." }, { status: 400 });
   }
 
-  try {
-    const response = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
-      max_tokens: 1024,
-      system: SYSTEM_PROMPT,
-      messages: messages.map((m) => ({
-        role: m.role,
-        content: m.content,
-      })),
-    });
-
-    const text =
-      response.content[0]?.type === "text" ? response.content[0].text : "";
-
-    return NextResponse.json({ content: text });
-  } catch (err) {
-    console.error("Anthropic API error:", err);
+  const apiKey = process.env.HUGGINGFACE_API_KEY;
+  if (!apiKey) {
+    console.error("HUGGINGFACE_API_KEY is not set");
     return NextResponse.json(
-      { error: "Assistant unavailable. Please try again." },
+      { error: "AI assistant is not configured. Please set HUGGINGFACE_API_KEY." },
+      { status: 503 }
+    );
+  }
+
+  try {
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          inputs: buildPrompt(messages),
+          parameters: {
+            max_new_tokens: 512,
+            temperature: 0.7,
+            return_full_text: false,
+          },
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errText = await response.text();
+      console.error("Hugging Face API error:", response.status, errText);
+
+      if (response.status === 503) {
+        return NextResponse.json(
+          { error: "The AI model is loading. Please wait 20 seconds and try again." },
+          { status: 503 }
+        );
+      }
+
+      return NextResponse.json(
+        { error: "Assistant unavailable. Please try again shortly." },
+        { status: 502 }
+      );
+    }
+
+    const data = (await response.json()) as Array<{ generated_text?: string }>;
+    const content = data[0]?.generated_text?.trim() ?? "No response generated.";
+
+    return NextResponse.json({ content });
+  } catch (err) {
+    console.error("Assistant route error:", err);
+    return NextResponse.json(
+      { error: "Connection to AI service failed. Please check your network and try again." },
       { status: 500 }
     );
   }

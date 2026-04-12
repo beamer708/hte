@@ -1,5 +1,4 @@
 import { Resource } from "@/lib/resources";
-import { MessageCircle } from "lucide-react";
 import Icon from "@/components/Icon";
 
 interface DiscordCommunityCardProps {
@@ -11,7 +10,7 @@ export default function DiscordCommunityCard({ resource }: DiscordCommunityCardP
     <article className="group flex items-start gap-4 border-b border-border/40 py-5 last:border-b-0">
       {/* Icon */}
       <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border/60 bg-card">
-        <MessageCircle className="h-4 w-4 text-muted-foreground" strokeWidth={1.8} aria-hidden />
+        <i className="fi fi-br-comment" style={{ fontSize: "16px", color: "var(--muted-foreground)" }} aria-hidden />
       </div>
 
       {/* Content */}

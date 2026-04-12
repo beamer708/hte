@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("STORAGE_PRISMA_DATABASE_URL")
+  directUrl = env("STORAGE_DATABASE_URL")
 }
 
 model Resource {
@@ -82,4 +83,39 @@ model AnalyticsEvent {
   deviceType    String
   ipHash        String?
   isBot         Boolean  @default(false)
+}
+
+// Key/value store for runtime site configuration (e.g. shutdown toggle)
+model SiteConfig {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+// Discord IDs permanently blocked from beta access
+model BetaBlacklist {
+  id        String   @id @default(cuid())
+  discordId String   @unique
+  addedAt   DateTime @default(now())
+}
+
+// Log of every beta login attempt
+model BetaLog {
+  id            String   @id @default(cuid())
+  discordId     String
+  username      String
+  accessGranted Boolean
+  reason        String?
+  createdAt     DateTime @default(now())
+}
+
+// Users who have successfully authenticated with beta access
+model BetaTester {
+  id            String   @id @default(cuid())
+  discordId     String   @unique
+  username      String
+  avatarUrl     String?
+  firstAccess   DateTime @default(now())
+  lastSeen      DateTime @updatedAt
 }

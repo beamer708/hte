@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect, FormEvent } from "react";
-import { Send, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Resource } from "@/lib/resources";
 import WebsiteResourceCard from "@/components/WebsiteResourceCard";
@@ -103,7 +102,7 @@ export default function ResourceChatPage() {
               /* Empty state */
               <div className="flex flex-col items-center justify-center h-full gap-6 py-12">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border/60 bg-background">
-                  <Sparkles className="h-5 w-5 text-accent" strokeWidth={1.8} />
+                  <i className="fi fi-br-magic-wand" style={{ fontSize: "20px", color: "var(--accent)" }} />
                 </div>
                 <h2 className="text-base font-medium text-foreground">What can I help you with?</h2>
                 <div className="flex flex-wrap justify-center gap-2">
@@ -128,7 +127,7 @@ export default function ResourceChatPage() {
                       {msg.role === "assistant" && (
                         <div className="mb-2 flex items-center gap-2">
                           <div className="flex h-6 w-6 items-center justify-center rounded-full border border-border/60 bg-background">
-                            <Sparkles className="h-3 w-3 text-accent" strokeWidth={1.8} />
+                            <i className="fi fi-br-magic-wand" style={{ fontSize: "12px", color: "var(--accent)" }} />
                           </div>
                           <span className="text-xs font-medium text-muted-foreground">Assistant</span>
                         </div>
@@ -178,7 +177,7 @@ export default function ResourceChatPage() {
               <div className="flex justify-start">
                 <div className="flex items-center gap-2">
                   <div className="flex h-6 w-6 items-center justify-center rounded-full border border-border/60 bg-background">
-                    <Sparkles className="h-3 w-3 text-accent" strokeWidth={1.8} />
+                    <i className="fi fi-br-magic-wand" style={{ fontSize: "12px", color: "var(--accent)" }} />
                   </div>
                   <div className="flex gap-1 items-center">
                     <span className="typing-dot h-1.5 w-1.5 rounded-full bg-muted-foreground/60" />
@@ -210,7 +209,7 @@ export default function ResourceChatPage() {
                 className="flex h-11 shrink-0 items-center gap-2 rounded-lg border border-border bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-white/5 disabled:opacity-40"
                 aria-label="Send"
               >
-                <Send className="h-4 w-4" strokeWidth={1.8} />
+                <i className="fi fi-br-paper-plane" style={{ fontSize: "16px", color: "currentColor" }} />
                 Send
               </button>
             </form>

@@ -1,4 +1,3 @@
-import { Download, ExternalLink } from "lucide-react";
 
 export default function TemplatesPage() {
   return (
@@ -21,7 +20,7 @@ export default function TemplatesPage() {
           <div className="rounded-2xl border border-border/70 bg-card/75 p-7 sm:p-8">
             <div className="flex items-start gap-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10">
-                <Download className="h-5 w-5 text-accent" strokeWidth={1.8} />
+                <i className="fi fi-br-download" style={{ fontSize: "20px", color: "var(--accent)" }} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
@@ -40,7 +39,7 @@ export default function TemplatesPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/40"
                   >
-                    <Download className="h-4 w-4" strokeWidth={1.8} />
+                    <i className="fi fi-br-download" style={{ fontSize: "16px", color: "currentColor" }} />
                     Download .ai File
                   </a>
                 </div>
@@ -68,7 +67,7 @@ export default function TemplatesPage() {
                     className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-accent hover:text-accent/80 transition-colors focus:outline-none"
                   >
                     Visit Affinity Studio
-                    <ExternalLink className="h-3 w-3" strokeWidth={1.8} />
+                    <i className="fi fi-br-arrow-up-right" style={{ fontSize: "12px", color: "currentColor" }} />
                   </a>
                 </div>
               </div>
@@ -79,7 +78,7 @@ export default function TemplatesPage() {
           <div className="rounded-2xl border border-border/70 bg-card/75 p-7 sm:p-8">
             <div className="flex items-start gap-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10">
-                <ExternalLink className="h-5 w-5 text-accent" strokeWidth={1.8} />
+                <i className="fi fi-br-arrow-up-right" style={{ fontSize: "20px", color: "var(--accent)" }} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
@@ -98,7 +97,7 @@ export default function TemplatesPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card focus:outline-none focus:ring-2 focus:ring-accent/40"
                   >
-                    <ExternalLink className="h-4 w-4" strokeWidth={1.8} />
+                    <i className="fi fi-br-arrow-up-right" style={{ fontSize: "16px", color: "currentColor" }} />
                     Open in Canva
                   </a>
                 </div>

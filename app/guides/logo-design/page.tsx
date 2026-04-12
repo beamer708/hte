@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
 import Icon from "@/components/Icon";
 import ScrollAnimator from "@/components/ScrollAnimator";
 import { resources, getYouTubeThumbnail } from "@/lib/resources";
@@ -278,7 +277,7 @@ export default function LogoDesignGuidePage() {
                     className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card focus:outline-none focus:ring-2 focus:ring-accent/25"
                   >
                     Visit
-                    <ExternalLink className="h-3.5 w-3.5" strokeWidth={1.8} />
+                    <i className="fi fi-br-arrow-up-right" style={{ fontSize: "14px", color: "currentColor" }} />
                   </a>
                 </div>
               </div>
@@ -362,7 +361,7 @@ export default function LogoDesignGuidePage() {
                           className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3.5 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card focus:outline-none focus:ring-2 focus:ring-accent/25"
                         >
                           {isVideo ? "Watch" : "Visit"}
-                          <ExternalLink className="h-3 w-3" strokeWidth={1.8} />
+                          <i className="fi fi-br-arrow-up-right" style={{ fontSize: "12px", color: "currentColor" }} />
                         </a>
                       </div>
                     </div>

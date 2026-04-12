@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search, X, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { resources } from "@/lib/resources";
 import YouTubeResourceCard from "@/components/YouTubeResourceCard";
@@ -91,7 +90,7 @@ export default function ResourcesPage() {
         {/* AI Chat CTA */}
         <div className="mb-10 flex items-center gap-4 rounded-lg border border-border/60 bg-card px-5 py-4">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border/60 bg-background">
-            <Sparkles className="h-4 w-4 text-accent" strokeWidth={1.8} />
+            <i className="fi fi-br-magic-wand" style={{ fontSize: "16px", color: "var(--accent)" }} />
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-sm font-medium text-foreground">Not sure where to start?</p>
@@ -108,10 +107,10 @@ export default function ResourcesPage() {
         {/* Search / filter bar */}
         <div className="mb-14 flex items-center gap-3">
           <div className="relative flex-1 max-w-md">
-            <Search
-              className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none"
+            <i
+              className="fi fi-br-search absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+              style={{ fontSize: "16px", color: "var(--muted-foreground)" }}
               aria-hidden
-              strokeWidth={1.8}
             />
             <input
               type="search"
@@ -128,7 +127,7 @@ export default function ResourcesPage() {
                 className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30"
                 aria-label="Clear search"
               >
-                <X className="h-3.5 w-3.5" aria-hidden strokeWidth={1.8} />
+                <i className="fi fi-br-cross" style={{ fontSize: "14px", color: "currentColor" }} aria-hidden />
               </button>
             )}
           </div>

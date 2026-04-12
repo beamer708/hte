@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
-import { FaDiscord } from "react-icons/fa";
 
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -233,7 +232,7 @@ export default function AdminAnalyticsPage() {
               onClick={() => signIn("discord")}
               className="btn-primary mt-6 w-full justify-center gap-2"
             >
-              <FaDiscord className="text-lg" />
+              <i className="fi fi-br-comment" style={{ fontSize: "18px", color: "currentColor" }} />
               Sign in with Discord
             </button>
             {noPermission && (

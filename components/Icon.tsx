@@ -1,44 +1,9 @@
 "use client";
 
-import {
-  AppWindow,
-  ArrowRight,
-  BarChart3,
-  BookOpen,
-  Bot,
-  Briefcase,
-  Check,
-  CheckSquare,
-  CirclePlay,
-  Clock3,
-  Compass,
-  ExternalLink,
-  File,
-  FileText,
-  Folder,
-  Globe,
-  Grid3X3,
-  Home,
-  Info,
-  Layers,
-  Lightbulb,
-  Menu,
-  MessageCircle,
-  Monitor,
-  Navigation,
-  Palette,
-  Search,
-  Settings,
-  Shield,
-  Sparkles,
-  Type,
-  User,
-  Users,
-  Wrench,
-  X,
-  type LucideIcon,
-} from "lucide-react";
-import { FaDiscord } from "react-icons/fa6";
+// Icon component — renders Flaticon UIcons exclusively.
+// Bold Rounded (`fi-br-*`): UI elements, navigation, buttons, labels.
+// Solid Rounded (`fi-sr-*`): active/filled states, status icons, emphasis.
+// Never use outline, thin, or sharp variants.
 
 export type IconName =
   | "home"
@@ -78,110 +43,74 @@ export type IconName =
   | "resources"
   | "text";
 
-/** Brand icon aliases rendered with Lucide equivalents. */
-export type BrandIconName =
-  | "discord"
-  | "youtube"
-  | "behance"
-  | "flaticon"
-  | "github"
-  | "twitter"
-  | "instagram"
-  | "facebook"
-  | "linkedin"
-  | "twitch"
-  | "tiktok"
-  | "spotify"
-  | "reddit"
-  | "whatsapp"
-  | "telegram"
-  | "vimeo"
-  | "figma"
-  | "dribbble"
-  | "pinterest";
+export type BrandIconName = "discord" | "youtube" | "behance" | "flaticon" | "github";
+
+// Maps icon names to Flaticon UIcons class suffixes.
+// All icons use Bold Rounded (fi-br-) by default; active/status icons use Solid Rounded (fi-sr-).
+const iconClassMap: Record<IconName | BrandIconName, string> = {
+  home: "fi fi-br-home",
+  book: "fi fi-br-book-alt",
+  books: "fi fi-br-book-alt",
+  file: "fi fi-br-file",
+  document: "fi fi-br-document",
+  info: "fi fi-br-info",
+  "menu-burger": "fi fi-br-menu-burger",
+  cross: "fi fi-br-cross",
+  search: "fi fi-br-search",
+  user: "fi fi-br-user",
+  users: "fi fi-br-users",
+  "users-alt": "fi fi-br-users",
+  bulb: "fi fi-br-bulb",
+  check: "fi fi-sr-check-circle",
+  checkbox: "fi fi-sr-check-circle",
+  "arrow-right": "fi fi-br-arrow-right",
+  layers: "fi fi-br-layers",
+  palette: "fi fi-br-paint-brush",
+  "message-sms": "fi fi-br-comment-alt",
+  "arrow-trend-up": "fi fi-br-chart-line-up",
+  settings: "fi fi-br-settings",
+  chatbot: "fi fi-br-comment-alt",
+  grid: "fi fi-br-grid",
+  apps: "fi fi-br-apps",
+  computer: "fi fi-br-computer",
+  globe: "fi fi-br-globe",
+  wrench: "fi fi-br-wrench",
+  "up-right-from-square": "fi fi-br-arrow-up-right",
+  sparkles: "fi fi-br-magic-wand",
+  compass: "fi fi-br-compass",
+  navigation: "fi fi-br-navigation",
+  clock: "fi fi-br-clock",
+  "video-camera": "fi fi-br-video-camera",
+  vault: "fi fi-br-shield",
+  resources: "fi fi-br-box-open",
+  text: "fi fi-br-text",
+  // Brand icons — closest Flaticon equivalents
+  discord: "fi fi-br-comment",
+  youtube: "fi fi-br-video-camera",
+  behance: "fi fi-br-briefcase",
+  flaticon: "fi fi-br-grid",
+  github: "fi fi-br-code-branch",
+};
 
 interface IconProps {
   name: IconName | BrandIconName;
   className?: string;
+  style?: React.CSSProperties;
   "aria-hidden"?: boolean;
 }
 
-const iconMap: Record<IconName, LucideIcon> = {
-  home: Home,
-  book: BookOpen,
-  books: BookOpen,
-  file: File,
-  document: FileText,
-  info: Info,
-  "menu-burger": Menu,
-  cross: X,
-  search: Search,
-  user: User,
-  users: Users,
-  "users-alt": Users,
-  bulb: Lightbulb,
-  check: Check,
-  checkbox: CheckSquare,
-  "arrow-right": ArrowRight,
-  layers: Layers,
-  palette: Palette,
-  "message-sms": MessageCircle,
-  "arrow-trend-up": BarChart3,
-  settings: Settings,
-  chatbot: Bot,
-  grid: Grid3X3,
-  apps: AppWindow,
-  computer: Monitor,
-  globe: Globe,
-  wrench: Wrench,
-  "up-right-from-square": ExternalLink,
-  sparkles: Sparkles,
-  compass: Compass,
-  navigation: Navigation,
-  clock: Clock3,
-  "video-camera": CirclePlay,
-  vault: Shield,
-  resources: Folder,
-  text: Type,
-};
-
-const brandIconMap: Record<BrandIconName, LucideIcon> = {
-  discord: MessageCircle,
-  youtube: CirclePlay,
-  behance: Briefcase,
-  flaticon: Grid3X3,
-  github: Folder,
-  twitter: MessageCircle,
-  instagram: CirclePlay,
-  facebook: MessageCircle,
-  linkedin: Briefcase,
-  twitch: CirclePlay,
-  tiktok: CirclePlay,
-  spotify: CirclePlay,
-  reddit: MessageCircle,
-  whatsapp: MessageCircle,
-  telegram: MessageCircle,
-  vimeo: CirclePlay,
-  figma: Palette,
-  dribbble: CirclePlay,
-  pinterest: Palette,
-};
-
-const brandNames = new Set<BrandIconName>(Object.keys(brandIconMap) as BrandIconName[]);
-
-export default function Icon({ name, className = "", "aria-hidden": ariaHidden = true }: IconProps) {
-  if (name === "discord") {
-    return <FaDiscord className={`text-muted-foreground ${className}`.trim()} aria-hidden={ariaHidden} />;
-  }
-  const isBrand = brandNames.has(name as BrandIconName);
-  const LucideComponent = isBrand
-    ? (brandIconMap[name as BrandIconName] ?? MessageCircle)
-    : (iconMap[name as IconName] ?? Info);
+export default function Icon({
+  name,
+  className = "",
+  style,
+  "aria-hidden": ariaHidden = true,
+}: IconProps) {
+  const baseClass = iconClassMap[name] ?? "fi fi-br-info";
   return (
-    <LucideComponent
-      className={`text-muted-foreground ${className}`.trim()}
+    <i
+      className={`${baseClass} ${className}`.trim()}
+      style={{ color: "var(--muted-foreground)", ...style }}
       aria-hidden={ariaHidden}
-      strokeWidth={1.8}
     />
   );
 }
