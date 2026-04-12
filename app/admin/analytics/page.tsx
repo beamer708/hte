@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { FaDiscord } from "react-icons/fa";
-import greenLogo from "@/Media/GreenLogo.png";
+
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -225,7 +225,7 @@ export default function AdminAnalyticsPage() {
         <div className="w-full max-w-sm px-4">
           <div className="rounded-3xl border border-border bg-card/85 p-8 text-center">
             <div className="mb-5 flex justify-center">
-              <Image src={greenLogo} alt="" width={48} height={48} />
+              <Image src="/GreenLogo.png" alt="" width={48} height={48} />
             </div>
             <h1 className="text-xl font-bold text-foreground">Admin Panel</h1>
             <p className="mt-2 text-sm text-muted-foreground">Sign in with Discord to continue.</p>

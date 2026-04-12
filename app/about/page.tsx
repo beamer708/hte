@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Icon from "@/components/Icon";
 import { NAV } from "@/lib/site-structure";
-import greenLogo from "@/Media/GreenLogo.png";
+
 
 export default function AboutPage() {
   return (
@@ -13,7 +13,7 @@ export default function AboutPage() {
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-card-hover">
               <Icon name="compass" className="text-3xl text-primary" />
             </div>
-            <Image src={greenLogo} alt="" width={48} height={48} />
+            <Image src="/GreenLogo.png" alt="" width={48} height={48} />
           </div>
           <h1 className="section-heading">About @howtoerlc</h1>
           <p className="section-subheading mt-3 mx-auto">

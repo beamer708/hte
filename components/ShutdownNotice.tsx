@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Icon from "@/components/Icon";
-import greenLogo from "@/Media/GreenLogo.png";
+
 
 export default function ShutdownNotice() {
   return (
@@ -12,7 +12,7 @@ export default function ShutdownNotice() {
               Scheduled maintenance
             </span>
             <Image
-              src={greenLogo}
+              src="/GreenLogo.png"
               alt="@howtoerlc"
               width={86}
               height={86}

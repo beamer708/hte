@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Icon from "@/components/Icon";
 import { NAV } from "@/lib/site-structure";
-import greenLogo from "@/Media/GreenLogo.png";
+
 import ScrollAnimator from "@/components/ScrollAnimator";
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-8 flex items-center justify-center gap-4">
               <Image
-                src={greenLogo}
+                src="/GreenLogo.png"
                 alt=""
                 width={64}
                 height={64}

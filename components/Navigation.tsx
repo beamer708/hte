@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Icon from "@/components/Icon";
 import { NAV } from "@/lib/site-structure";
-import greenLogo from "@/Media/GreenLogo.png";
+
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function Navigation() {
             className="flex items-center gap-3 transition-opacity hover:opacity-90"
           >
             <Image
-              src={greenLogo}
+              src="/GreenLogo.png"
               alt=""
               width={34}
               height={34}
