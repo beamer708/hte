@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Setting Up a CAD System | Unity Guides",
+  title: "Setting Up a CAD System | @howtoerlc Guides",
   description: "How to set up a Computer-Aided Dispatch system that supports organized, realistic ERLC operations.",
 };
 

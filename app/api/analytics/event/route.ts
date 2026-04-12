@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     const referrerFromHeader = extractReferrerHost(request.headers.get("referer"));
     const referrerHost = referrerFromPayload ?? referrerFromHeader;
 
-    const salt = getOptionalEnv("ANALYTICS_SALT") ?? "unity-vault-analytics-salt";
+    const salt = getOptionalEnv("ANALYTICS_SALT") ?? "howtoerlc-analytics-salt";
     const ipHash = hashIpAddress(ip, salt);
 
     await prisma.analyticsEvent.create({

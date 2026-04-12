@@ -13,7 +13,7 @@ export default function LegalPage() {
               No affiliation
             </h2>
             <p className="leading-relaxed text-muted-foreground">
-              Unity is not affiliated with Roblox Corporation, Roblox developers, or the developers of Emergency Response: Liberty County (ERLC). Unity is an independent resource curation platform created by and for the ERLC community.
+              @howtoerlc is not affiliated with Roblox Corporation, Roblox developers, or the developers of Emergency Response: Liberty County (ERLC). @howtoerlc is an independent resource curation platform created by and for the ERLC community.
             </p>
           </section>
 
@@ -22,17 +22,17 @@ export default function LegalPage() {
               External content ownership
             </h2>
             <p className="mb-4 leading-relaxed text-muted-foreground">
-              All external resources featured on Unity belong to their original creators. Unity does not claim ownership of any external content, including but not limited to:
+              All external resources featured on @howtoerlc belong to their original creators. @howtoerlc does not claim ownership of any external content, including but not limited to:
             </p>
             <ul className="ml-2 list-inside list-disc space-y-1.5 text-muted-foreground">
               <li>YouTube videos and playlists</li>
               <li>Website content and tools</li>
               <li>Design resources and assets</li>
               <li>Guides and documentation</li>
-              <li>Any other external resources linked from Unity</li>
+              <li>Any other external resources linked from @howtoerlc</li>
             </ul>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Unity curates and organizes these resources for educational purposes only. All credit and ownership rights remain with the original creators.
+              @howtoerlc curates and organizes these resources for educational purposes only. All credit and ownership rights remain with the original creators.
             </p>
           </section>
 
@@ -41,7 +41,7 @@ export default function LegalPage() {
               Educational use only
             </h2>
             <p className="leading-relaxed text-muted-foreground">
-              Unity is provided for educational and informational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any external resource. Users are responsible for verifying information and respecting the terms of use of external platforms.
+              @howtoerlc is provided for educational and informational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any external resource. Users are responsible for verifying information and respecting the terms of use of external platforms.
             </p>
           </section>
 
@@ -50,7 +50,7 @@ export default function LegalPage() {
               No tutorial creation
             </h2>
             <p className="leading-relaxed text-muted-foreground">
-              Unity does not create tutorials. We curate, organize, and reference existing resources from across the web. All tutorial content and educational materials linked from Unity are created by third parties and subject to their terms of use and licensing.
+              @howtoerlc does not create tutorials. We curate, organize, and reference existing resources from across the web. All tutorial content and educational materials linked from @howtoerlc are created by third parties and subject to their terms of use and licensing.
             </p>
           </section>
         </div>

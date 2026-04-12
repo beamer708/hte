@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Department Hierarchy | Unity Guides",
+  title: "Department Hierarchy | @howtoerlc Guides",
   description: "How to structure your ERLC department hierarchy for clarity, accountability, and scalable growth.",
 };
 

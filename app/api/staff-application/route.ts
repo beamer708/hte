@@ -7,12 +7,12 @@ import { isStaffApplicationOpen, requireEnv } from "@/lib/env";
  * 
  * To set up the Discord webhook for staff applications:
  * 
- * 1. Open the Unity Discord server (Server ID: 1251469666787000343)
+ * 1. Open the @howtoerlc Discord server (Server ID: 1251469666787000343)
  * 2. Go to Server Settings (right-click server name → Server Settings)
  * 3. Navigate to: Integrations → Webhooks
  * 4. Click "New Webhook" or "Create Webhook"
  * 5. Configure the webhook:
- *    - Name: "Unity Applications" (or similar)
+ *    - Name: "@howtoerlc Applications" (or similar)
  *    - Channel: Select the staff review channel (Channel ID: 1466217442954186931)
  *    - Copy the webhook URL
  * 6. Add the webhook URL to your environment variables:

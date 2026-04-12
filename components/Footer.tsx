@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Icon from "@/components/Icon";
 import { NAV, STATUS_URL } from "@/lib/site-structure";
-import uLogo from "@/Media/ULogo.svg";
+import greenLogo from "@/Media/GreenLogo.png";
 
 export default function Footer() {
   return (
@@ -10,8 +10,8 @@ export default function Footer() {
       <div className="page-container py-10">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <Link href="/" className="inline-flex items-center gap-2">
-            <Image src={uLogo} alt="" width={24} height={24} />
-            <span className="text-base font-medium tracking-[0.14em] text-foreground uppercase">Unity</span>
+            <Image src={greenLogo} alt="" width={24} height={24} />
+            <span className="text-base font-medium tracking-[0.14em] text-foreground uppercase">@howtoerlc</span>
           </Link>
 
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -40,7 +40,7 @@ export default function Footer() {
         </div>
 
         <p className="mt-6 border-t border-border/60 pt-5 text-xs text-muted-foreground">
-          Unity is free, independent, and not affiliated with Roblox or the ERLC development team. All external resources belong to their creators. Created by{" "}
+          @howtoerlc is free, independent, and not affiliated with Roblox or the ERLC development team. All external resources belong to their creators. Created by{" "}
           <a
             href="https://discord.com/users/527166312095678475"
             target="_blank"

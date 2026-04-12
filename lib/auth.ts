@@ -6,13 +6,13 @@
  *
  *   {NEXTAUTH_URL}/api/auth/callback/discord
  *
- * Example (production):  https://unityvault.xyz/api/auth/callback/discord
+ * Example (production):  https://howtoerlc.com/api/auth/callback/discord
  * Example (development):  http://localhost:3000/api/auth/callback/discord
  *
  * Required environment variables (server-side only — never expose to client):
  *   DISCORD_CLIENT_ID          — OAuth2 application client ID
  *   DISCORD_CLIENT_SECRET      — OAuth2 application client secret
- *   DISCORD_GUILD_ID           — Unity Discord server ID
+ *   DISCORD_GUILD_ID           — @howtoerlc Discord server ID
  *   DISCORD_ADMIN_ROLE_ID      — Role ID required to access the admin panel (1485445645270515825)
  *   DISCORD_BETA_TESTER_ID     — User ID always granted access (1485237738277175457)
  *   NEXTAUTH_SECRET            — Random secret for signing NextAuth tokens

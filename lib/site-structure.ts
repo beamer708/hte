@@ -3,7 +3,7 @@
  * Single source of truth for nav, footer, and resource hub.
  */
 
-export const SITE_NAME = "Unity";
+export const SITE_NAME = "@howtoerlc";
 
 /** Top-level nav: Resources, Support, Status, About. Resources = single page (assistant). */
 export const NAV = {
@@ -54,4 +54,4 @@ export const SUPPORT_LINKS: FooterLink[] = [
   { label: "Legal", href: "/legal" },
 ];
 
-export const STATUS_URL = "https://unityvaultstatus.betteruptime.com";
+export const STATUS_URL = "https://howtoerlcstatus.betteruptime.com";

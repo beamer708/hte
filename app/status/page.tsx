@@ -22,7 +22,7 @@ export default function StatusPage() {
               <div>
                 <h2 className="font-semibold text-foreground">Live status</h2>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Our status page shows real-time uptime and incident history for Unity services.
+                  Our status page shows real-time uptime and incident history for @howtoerlc services.
                 </p>
                 <a
                   href={STATUS_URL}

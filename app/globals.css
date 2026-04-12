@@ -4,38 +4,38 @@
 
 :root {
   --background: #0A0A0A;
-  --foreground: #F5F0E8;
-  --muted-foreground: #7A7A7A;
-  --secondary-text: #7A7A7A;
-  --muted-text: #555555;
-  --primary: #F5F0E8;
-  --primary-hover: #E8E3DA;
-  --accent: #C9B99A;
-  --accent-hover: #B8A88A;
-  --border: #1F1F1F;
-  --card: #111111;
-  --card-hover: #141414;
-  --surface-2: #141414;
-  --ring: rgba(201, 185, 154, 0.25);
+  --foreground: #F5F5F0;
+  --muted-foreground: #888888;
+  --secondary-text: #888888;
+  --muted-text: #888888;
+  --primary: #52D973;
+  --primary-hover: #6EE88A;
+  --accent: #52D973;
+  --accent-hover: #3fb85e;
+  --border: #1f1f1f;
+  --card: #161616;
+  --card-hover: #1a1a1a;
+  --surface-2: #1a1a1a;
+  --ring: rgba(82, 217, 115, 0.2);
   --font-sans: "Satoshi", "Satoshi Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* Dark theme class kept for compatibility. */
 .dark {
   --background: #0A0A0A;
-  --foreground: #F5F0E8;
-  --muted-foreground: #7A7A7A;
-  --secondary-text: #7A7A7A;
-  --muted-text: #555555;
-  --primary: #F5F0E8;
-  --primary-hover: #E8E3DA;
-  --accent: #C9B99A;
-  --accent-hover: #B8A88A;
-  --border: #1F1F1F;
-  --card: #111111;
-  --card-hover: #141414;
-  --surface-2: #141414;
-  --ring: rgba(201, 185, 154, 0.25);
+  --foreground: #F5F5F0;
+  --muted-foreground: #888888;
+  --secondary-text: #888888;
+  --muted-text: #888888;
+  --primary: #52D973;
+  --primary-hover: #6EE88A;
+  --accent: #52D973;
+  --accent-hover: #3fb85e;
+  --border: #1f1f1f;
+  --card: #161616;
+  --card-hover: #1a1a1a;
+  --surface-2: #1a1a1a;
+  --ring: rgba(82, 217, 115, 0.2);
 }
 
 * {
@@ -67,8 +67,8 @@ body::before {
   pointer-events: none;
   /* Geometric grid */
   background-image:
-    linear-gradient(rgba(245, 240, 232, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 240, 232, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(245, 245, 240, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 245, 240, 0.03) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -80,8 +80,8 @@ body::after {
   pointer-events: none;
   /* Radial gradient blobs — upper-left and lower-right */
   background:
-    radial-gradient(ellipse 70% 55% at 5% 10%, rgba(22, 17, 42, 0.22) 0%, transparent 70%),
-    radial-gradient(ellipse 55% 65% at 95% 90%, rgba(15, 18, 32, 0.18) 0%, transparent 70%);
+    radial-gradient(ellipse 70% 55% at 5% 10%, rgba(10, 10, 10, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 65% at 95% 90%, rgba(10, 10, 10, 0.5) 0%, transparent 70%);
 }
 
 @layer base {
@@ -375,5 +375,5 @@ body::after {
 /* ─── Decorative step numbers ────────────────────────────────────────────── */
 
 .step-num {
-  color: rgba(245, 240, 232, 0.12);
+  color: rgba(82, 217, 115, 0.15);
 }

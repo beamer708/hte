@@ -118,7 +118,7 @@ async function sendSuggestionToDiscord(data: ResourceSuggestionData): Promise<{
           { name: "Why it should be added", value: reason, inline: false },
         ],
         footer: {
-          text: "Unity • Resource Suggestions",
+          text: "@howtoerlc • Resource Suggestions",
         },
       },
     ],

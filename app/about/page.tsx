@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Icon from "@/components/Icon";
 import { NAV } from "@/lib/site-structure";
-import uLogo from "@/Media/ULogo.svg";
+import greenLogo from "@/Media/GreenLogo.png";
 
 export default function AboutPage() {
   return (
@@ -13,9 +13,9 @@ export default function AboutPage() {
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-card-hover">
               <Icon name="compass" className="text-3xl text-primary" />
             </div>
-            <Image src={uLogo} alt="" width={48} height={48} />
+            <Image src={greenLogo} alt="" width={48} height={48} />
           </div>
-          <h1 className="section-heading">About Unity</h1>
+          <h1 className="section-heading">About @howtoerlc</h1>
           <p className="section-subheading mt-3 mx-auto">
             Why we exist and what we do.
           </p>
@@ -23,10 +23,10 @@ export default function AboutPage() {
 
         <div className="space-y-8">
           <p className="text-lg leading-8 text-muted-foreground">
-            Unity exists to help ERLC communities stop overthinking growth. Everything successful servers learn comes from public resources. We organize those resources in one place so you can find what you need without spending hours searching.
+            @howtoerlc exists to help ERLC communities stop overthinking growth. Everything successful servers learn comes from public resources. We organize those resources in one place so you can find what you need without spending hours searching.
           </p>
           <p className="text-lg leading-8 text-muted-foreground">
-            We curate the best ERLC resources already available on the web and present them clearly and professionally. Unity does not create tutorials. We are a resource vault, not a tutorial creator. All credit stays with the original creators.
+            We curate the best ERLC resources already available on the web and present them clearly and professionally. @howtoerlc does not create tutorials. We are a resource vault, not a tutorial creator. All credit stays with the original creators.
           </p>
 
           <div className="gradient-border gradient-card mt-12 rounded-2xl p-8">

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Training Program for New Members | Unity Guides",
+  title: "Training Program for New Members | @howtoerlc Guides",
   description: "How to set up a training program that onboards new members with consistency and operational clarity.",
 };
 

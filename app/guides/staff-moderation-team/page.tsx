@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Staff and Moderation Team | Unity Guides",
+  title: "Staff and Moderation Team | @howtoerlc Guides",
   description: "How to set up a staff and moderation team that is structured, consistent, and operationally sound.",
 };
 

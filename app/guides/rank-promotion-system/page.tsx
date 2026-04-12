@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 
 export const metadata = {
-  title: "Rank and Promotion System | Unity Guides",
+  title: "Rank and Promotion System | @howtoerlc Guides",
   description: "How to build a rank and promotion system that is transparent, merit-based, and easy to maintain.",
 };
 

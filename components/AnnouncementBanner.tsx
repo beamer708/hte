@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const STORAGE_KEY = "unity-announcement-dismissed-v1";
+const STORAGE_KEY = "howtoerlc-announcement-dismissed-v1";
 
 export default function AnnouncementBanner() {
   const [visible, setVisible] = useState(false);
@@ -31,7 +31,7 @@ export default function AnnouncementBanner() {
   return (
     <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:"12px", borderBottom:"0.5px solid rgba(240,236,224,0.08)", backgroundColor:"#0a0a09", padding:"8px 24px" }}>
       <a
-        href="https://unityvaultstatus.betteruptime.com/maintenance/868358"
+        href="https://howtoerlcstatus.betteruptime.com/maintenance/868358"
         target="_blank"
         rel="noopener noreferrer"
         style={{ fontSize:"11px", fontWeight:300, letterSpacing:"0.04em", color:"var(--muted-foreground)", textDecoration:"none" }}

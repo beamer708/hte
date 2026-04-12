@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Icon from "@/components/Icon";
-import uLogo from "@/Media/ULogo.svg";
+import greenLogo from "@/Media/GreenLogo.png";
 
 export default function ShutdownNotice() {
   return (
@@ -12,8 +12,8 @@ export default function ShutdownNotice() {
               Scheduled maintenance
             </span>
             <Image
-              src={uLogo}
-              alt="Unity"
+              src={greenLogo}
+              alt="@howtoerlc"
               width={86}
               height={86}
               className="mx-auto mt-5 opacity-95"
@@ -23,7 +23,7 @@ export default function ShutdownNotice() {
               Website Temporarily Unavailable
             </h1>
             <p className="mx-auto mt-3 max-w-xl leading-relaxed text-muted-foreground">
-              Unity is temporarily offline while scheduled maintenance and platform improvements are completed.
+              @howtoerlc is temporarily offline while scheduled maintenance and platform improvements are completed.
               Access will be restored as soon as updates are finalized.
             </p>
           </div>
@@ -45,7 +45,7 @@ export default function ShutdownNotice() {
               Join Discord
             </a>
             <a
-              href="https://unityvaultstatus.betteruptime.com/maintenance"
+              href="https://howtoerlcstatus.betteruptime.com/maintenance"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary w-full sm:w-auto"

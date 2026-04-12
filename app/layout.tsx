@@ -8,19 +8,20 @@ import AnalyticsTracker from "@/components/AnalyticsTracker";
 import LoadingScreen from "@/components/LoadingScreen";
 
 export const metadata: Metadata = {
-  title: "Unity | ERLC Community Resources",
-  description: "Everything your community needs. Nothing in the way. A free, independent resource platform for ERLC communities.",
+  title: "howtoerlc",
+  description: "A curated resource vault built for ERLC communities that mean business.",
   keywords: ["ERLC", "Roblox", "roleplay", "community", "resources", "guides"],
   icons: {
-    icon: "/ULogo.svg",
-    shortcut: "/ULogo.svg",
-    apple: "/ULogo.svg",
-    other: [{ rel: "icon", url: "/ULogo.svg", type: "image/svg+xml" }],
+    icon: "/GreenLogo.png",
+    shortcut: "/GreenLogo.png",
+    apple: "/GreenLogo.png",
   },
   openGraph: {
-    title: "Unity | ERLC Community Resources",
-    description: "Everything your community needs. Nothing in the way.",
+    title: "howtoerlc",
+    siteName: "@howtoerlc",
+    description: "A curated resource vault built for ERLC communities that mean business.",
     type: "website",
+    images: ["/GreenLogo.png"],
   },
 };
 

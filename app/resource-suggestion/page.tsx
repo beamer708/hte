@@ -64,7 +64,7 @@ export default function ResourceSuggestionPage() {
         return;
       }
 
-      setSuccess("Your suggestion has been submitted. Thank you for helping improve Unity.");
+      setSuccess("Your suggestion has been submitted. Thank you for helping improve @howtoerlc.");
       setDiscordUsername("");
       setDiscordId("");
       setCategory("");
@@ -88,7 +88,7 @@ export default function ResourceSuggestionPage() {
           </div>
           <h1 className="section-heading">Suggest a Resource</h1>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            Share a useful resource for Unity. Your suggestion is sent to our Discord review
+            Share a useful resource for @howtoerlc. Your suggestion is sent to our Discord review
             channel for discussion and approval.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">

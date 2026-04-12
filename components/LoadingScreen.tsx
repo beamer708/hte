@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import uLogo from "@/Media/ULogo.svg";
+import greenLogo from "@/Media/GreenLogo.png";
 
 export default function LoadingScreen() {
   const [logoVisible, setLogoVisible] = useState(false);
@@ -38,7 +38,7 @@ export default function LoadingScreen() {
       aria-hidden="true"
     >
       <div className={`loading-logo${logoVisible ? " loading-logo--visible" : ""}`}>
-        <Image src={uLogo} alt="" width={64} height={64} priority />
+        <Image src={greenLogo} alt="" width={64} height={64} priority />
       </div>
     </div>
   );

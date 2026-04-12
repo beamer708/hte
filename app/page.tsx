@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Icon from "@/components/Icon";
 import { NAV } from "@/lib/site-structure";
-import uLogo from "@/Media/ULogo.svg";
+import greenLogo from "@/Media/GreenLogo.png";
 import ScrollAnimator from "@/components/ScrollAnimator";
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-8 flex items-center justify-center gap-4">
               <Image
-                src={uLogo}
+                src={greenLogo}
                 alt=""
                 width={64}
                 height={64}
@@ -30,7 +30,7 @@ export default function Home() {
               Everything your community needs. Nothing in the way.
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-muted-foreground sm:text-xl">
-              Unity organizes curated resources, tools, and guidance for ERLC communities in one place — so your team can find what they need and move forward.
+              @howtoerlc organizes curated resources, tools, and guidance for ERLC communities in one place — so your team can find what they need and move forward.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               <Link href={NAV.resources.href} className="btn-primary">
@@ -124,7 +124,7 @@ export default function Home() {
               Inside the Vault
             </h2>
             <p className="section-subheading mx-auto animate-on-scroll">
-              A curated look at what Unity organizes for you.
+              A curated look at what @howtoerlc organizes for you.
             </p>
           </div>
           <div className="mx-auto max-w-4xl grid gap-4 sm:grid-cols-2">
@@ -228,7 +228,7 @@ export default function Home() {
                   What big communities do differently
                 </h2>
                 <p className="section-subheading animate-on-scroll">
-                  They do not rely on hidden secrets. They rely on systems. Unity helps you access the same public resources through a clear, organized structure.
+                  They do not rely on hidden secrets. They rely on systems. @howtoerlc helps you access the same public resources through a clear, organized structure.
                 </p>
                 <Link
                   href={NAV.resources.href}
@@ -327,7 +327,7 @@ export default function Home() {
       <section className="section-spacing">
         <div className="page-container">
           <div className="relative overflow-hidden rounded-3xl border border-border/70 bg-card p-10 text-center sm:p-16">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(243,236,226,0.14),transparent_55%)]" aria-hidden />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(82,217,115,0.06),transparent_55%)]" aria-hidden />
             <h2 className="relative text-2xl font-bold tracking-tight text-foreground sm:text-3xl animate-on-scroll">
               Ready to build your community?
             </h2>
