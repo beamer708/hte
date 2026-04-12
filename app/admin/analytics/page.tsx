@@ -232,7 +232,7 @@ export default function AdminAnalyticsPage() {
               onClick={() => signIn("discord")}
               className="btn-primary mt-6 w-full justify-center gap-2"
             >
-              <i className="fi fi-br-comment" style={{ fontSize: "18px", color: "currentColor" }} />
+              <i className="fi fi-br-comment-alt" style={{ fontSize: "18px", color: "currentColor" }} />
               Sign in with Discord
             </button>
             {noPermission && (

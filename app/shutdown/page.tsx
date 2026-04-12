@@ -33,21 +33,35 @@ export default async function ShutdownPage({ searchParams }: Props) {
 
       <div className="mx-auto flex min-h-screen w-full max-w-2xl items-center justify-center py-14">
         <div className="relative w-full rounded-3xl border border-border bg-card p-8 sm:p-10">
-          {/* Badge */}
+          {/* Brand badge */}
           <div className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/35 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-              <i className="fi fi-sr-lock" style={{ fontSize: "11px" }} />
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <Image
+                src="/GreenLogo.png"
+                alt="@howtoerlc"
+                width={24}
+                height={24}
+                className="opacity-90"
+              />
+              <span className="text-sm font-medium tracking-[0.14em] uppercase text-muted-foreground">
+                @howtoerlc
+              </span>
+            </div>
+
+            {/* Main lock icon — 64px, green */}
+            <div className="flex justify-center mb-6">
+              <i
+                className="fi fi-sr-lock"
+                style={{ fontSize: "64px", color: "#52D973" }}
+                aria-hidden
+              />
+            </div>
+
+            {/* Status badge */}
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/35 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+              <i className="fi fi-sr-lock" style={{ fontSize: "11px" }} aria-hidden />
               Private Beta
             </span>
-
-            <Image
-              src="/GreenLogo.png"
-              alt="@howtoerlc"
-              width={86}
-              height={86}
-              className="mx-auto mt-5 opacity-95"
-              priority
-            />
 
             <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               Site Under Maintenance
@@ -61,8 +75,12 @@ export default async function ShutdownPage({ searchParams }: Props) {
           {/* Error message */}
           {errorMessage && (
             <div className="mt-6 flex items-start gap-3 rounded-xl border border-red-900/40 bg-red-950/20 px-4 py-3 text-sm text-red-400">
-              <i className="fi fi-sr-cross-circle mt-0.5 shrink-0" style={{ fontSize: "14px", color: "#E24B4A" }} />
-              {errorMessage}
+              <i
+                className="fi fi-sr-cross-circle"
+                style={{ fontSize: "24px", color: "#E24B4A", flexShrink: 0 }}
+                aria-hidden
+              />
+              <span className="mt-0.5">{errorMessage}</span>
             </div>
           )}
 
@@ -79,8 +97,9 @@ export default async function ShutdownPage({ searchParams }: Props) {
             <a
               href="/api/auth/signin/discord?callbackUrl=/api/beta-check"
               className="btn-primary w-full sm:w-auto"
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
             >
-              <i className="fi fi-br-user" style={{ fontSize: "14px" }} />
+              <i className="fi fi-br-comment-alt" style={{ fontSize: "18px" }} aria-hidden />
               Login with Discord
             </a>
 
@@ -89,9 +108,10 @@ export default async function ShutdownPage({ searchParams }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary w-full sm:w-auto"
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
             >
               Join Discord
-              <i className="fi fi-br-arrow-up-right" style={{ fontSize: "12px" }} />
+              <i className="fi fi-br-arrow-up-right" style={{ fontSize: "14px" }} aria-hidden />
             </a>
           </div>
         </div>

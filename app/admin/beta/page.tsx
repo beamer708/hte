@@ -134,7 +134,7 @@ export default function AdminBetaPage() {
         {/* Header */}
         <div>
           <div className="flex items-center gap-2 text-muted-foreground mb-1">
-            <i className="fi fi-br-test-tube" style={{ fontSize: "16px" }} />
+            <i className="fi fi-br-test-tube" style={{ fontSize: "20px", color: "#888888" }} />
             <span className="text-sm uppercase tracking-widest">Admin</span>
           </div>
           <h1 className="text-2xl font-semibold text-foreground">Beta Access Management</h1>
@@ -170,7 +170,7 @@ export default function AdminBetaPage() {
               className="flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-card-hover disabled:opacity-50"
             >
               <i
-                className={isShutdown ? "fi fi-sr-toggle-on" : "fi fi-sr-toggle-off"}
+                className={isShutdown ? "fi fi-sr-toggle-on" : "fi fi-br-toggle-off"}
                 style={{
                   fontSize: "20px",
                   color: isShutdown ? "#52D973" : "var(--muted-foreground)",

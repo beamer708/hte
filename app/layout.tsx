@@ -55,6 +55,11 @@ export default async function RootLayout({
           rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
         />
+        {/* Flaticon UIcons — Filled Rounded (decorative, cards, empty states) */}
+        <link
+          rel="stylesheet"
+          href="https://cdn-uicons.flaticon.com/2.6.0/uicons-filled-rounded/css/uicons-filled-rounded.css"
+        />
       </head>
       <body className="antialiased">
         {!isShutdown && <LoadingScreen />}

@@ -3,14 +3,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Icon from "@/components/Icon";
 import { NAV } from "@/lib/site-structure";
-
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [communityOpen, setCommunityOpen] = useState(false);
+  const pathname = usePathname();
+
   const isStaffApplicationOpen =
     process.env.NEXT_PUBLIC_STAFF_APPLICATION_OPEN === "true" ||
     process.env.NEXT_PUBLIC_STAFF_APPLICATION_OPEN === "1";
@@ -19,6 +21,19 @@ export default function Navigation() {
     { ...NAV.support },
     { ...NAV.about },
   ];
+
+  // Dropdown sub-items for Resources
+  const resourceItems = [
+    { href: "/resources", label: "Resource Vault" },
+    { href: "/community-guides", label: "Helpful Guides" },
+    { href: "/tools", label: "Tools" },
+    { href: "/templates", label: "Templates" },
+    { href: "/assistant", label: "AI Assistant" },
+  ];
+
+  const isResourcesActive = resourceItems.some((item) => pathname.startsWith(item.href));
+  const isAboutActive = pathname.startsWith("/about");
+  const isSupportActive = pathname.startsWith("/support");
 
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-background">
@@ -41,6 +56,7 @@ export default function Navigation() {
           </Link>
 
           <div className="hidden lg:flex lg:items-center lg:gap-1.5">
+            {/* Resources dropdown */}
             <div className="relative">
               <button
                 type="button"
@@ -52,10 +68,24 @@ export default function Navigation() {
                 aria-expanded={resourcesOpen}
                 aria-haspopup="menu"
               >
+                <i
+                  className={isResourcesActive ? "fi fi-sr-box-open" : "fi fi-br-box-open"}
+                  style={{
+                    fontSize: "18px",
+                    color: isResourcesActive ? "#52D973" : "#888888",
+                  }}
+                  aria-hidden
+                />
                 {NAV.resources.label}
-                <Icon
-                  name="arrow-right"
-                  className={`text-xs transition-transform ${resourcesOpen ? "rotate-90" : ""}`}
+                <i
+                  className="fi fi-br-arrow-right"
+                  style={{
+                    fontSize: "11px",
+                    color: "#888888",
+                    transition: "transform 0.15s",
+                    transform: resourcesOpen ? "rotate(90deg)" : "rotate(0deg)",
+                  }}
+                  aria-hidden
                 />
               </button>
               {resourcesOpen && (
@@ -63,49 +93,23 @@ export default function Navigation() {
                   className="absolute left-0 top-full mt-3 w-60 rounded-lg border border-border bg-card p-2"
                   role="menu"
                 >
-                  <Link
-                    href="/resources"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    Resource Vault
-                  </Link>
-                  <Link
-                    href="/community-guides"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    Helpful Guides
-                  </Link>
-                  <Link
-                    href="/tools"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    Tools
-                  </Link>
-                  <Link
-                    href="/templates"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    Templates
-                  </Link>
-                  <Link
-                    href="/assistant"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
-                    role="menuitem"
-                    onClick={() => setResourcesOpen(false)}
-                  >
-                    AI Assistant
-                  </Link>
+                  {resourceItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium hover:bg-white/15"
+                      style={{ color: pathname.startsWith(item.href) ? "#52D973" : undefined }}
+                      role="menuitem"
+                      onClick={() => setResourcesOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
+
+            {/* Community dropdown */}
             <div className="relative">
               <button
                 type="button"
@@ -117,10 +121,21 @@ export default function Navigation() {
                 aria-expanded={communityOpen}
                 aria-haspopup="menu"
               >
+                <i
+                  className="fi fi-br-users"
+                  style={{ fontSize: "18px", color: "#888888" }}
+                  aria-hidden
+                />
                 Community
-                <Icon
-                  name="arrow-right"
-                  className={`text-xs transition-transform ${communityOpen ? "rotate-90" : ""}`}
+                <i
+                  className="fi fi-br-arrow-right"
+                  style={{
+                    fontSize: "11px",
+                    color: "#888888",
+                    transition: "transform 0.15s",
+                    transform: communityOpen ? "rotate(90deg)" : "rotate(0deg)",
+                  }}
+                  aria-hidden
                 />
               </button>
               {communityOpen && (
@@ -131,7 +146,7 @@ export default function Navigation() {
                   {isStaffApplicationOpen && (
                     <Link
                       href={NAV.staffApplication.href}
-                      className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
+                      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
                       role="menuitem"
                       onClick={() => setCommunityOpen(false)}
                     >
@@ -140,7 +155,7 @@ export default function Navigation() {
                   )}
                   <Link
                     href="/resource-suggestion"
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
+                    className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-white/15"
                     role="menuitem"
                     onClick={() => setCommunityOpen(false)}
                   >
@@ -149,26 +164,41 @@ export default function Navigation() {
                 </div>
               )}
             </div>
-            {mainLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="btn-ghost rounded-lg py-2"
-              >
-                {link.label}
-              </Link>
-            ))}
+
+            {/* Main links */}
+            {mainLinks.map((link) => {
+              const isActive = pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="btn-ghost rounded-lg py-2"
+                  style={isActive ? { color: "#52D973" } : undefined}
+                >
+                  <i
+                    className={isActive ? "fi fi-sr-info" : "fi fi-br-info"}
+                    style={{ fontSize: "18px", color: isActive ? "#52D973" : "#888888" }}
+                    aria-hidden
+                  />
+                  {link.label}
+                </Link>
+              );
+            })}
+
             <span className="ml-1 inline-flex items-center rounded-full border border-border/60 px-2 py-0.5 text-xs font-medium text-muted-foreground">
               Free
             </span>
             <Link
               href={NAV.resources.href}
               className="ml-2 btn-primary px-5 py-2.5"
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
             >
+              <i className="fi fi-br-box-open" style={{ fontSize: "16px" }} aria-hidden />
               Enter Vault
             </Link>
           </div>
 
+          {/* Mobile toggle */}
           <button
             type="button"
             className="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-border/60 text-foreground hover:bg-white/5 transition-colors"
@@ -176,57 +206,34 @@ export default function Navigation() {
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
-            {mobileOpen ? (
-              <Icon name="cross" className="text-xl" />
-            ) : (
-              <Icon name="menu-burger" className="text-xl" />
-            )}
+            <i
+              className={mobileOpen ? "fi fi-br-cross" : "fi fi-br-menu-burger"}
+              style={{ fontSize: "18px", color: "#888888" }}
+              aria-hidden
+            />
           </button>
         </div>
       </div>
 
+      {/* Mobile menu */}
       {mobileOpen && (
         <div className="lg:hidden border-t border-border bg-background animate-in-fade">
           <div className="page-container space-y-1 py-5">
-            <Link
-              href="/resources"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              Resource Vault
-            </Link>
-            <Link
-              href="/community-guides"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              Helpful Guides
-            </Link>
-            <Link
-              href="/tools"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              Tools
-            </Link>
-            <Link
-              href="/templates"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              Templates
-            </Link>
-            <Link
-              href="/assistant"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
-              onClick={() => setMobileOpen(false)}
-            >
-              AI Assistant
-            </Link>
+            {resourceItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center gap-2 rounded-lg px-4 py-3 text-base font-medium hover:bg-white/5"
+                style={{ color: pathname.startsWith(item.href) ? "#52D973" : undefined }}
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
             {isStaffApplicationOpen && (
               <Link
                 href={NAV.staffApplication.href}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
+                className="flex items-center gap-2 rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
                 onClick={() => setMobileOpen(false)}
               >
                 Staff Application
@@ -234,7 +241,7 @@ export default function Navigation() {
             )}
             <Link
               href="/resource-suggestion"
-              className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
+              className="flex items-center gap-2 rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
               onClick={() => setMobileOpen(false)}
             >
               Submit a Suggestion
@@ -243,7 +250,8 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
+                className="flex items-center gap-2 rounded-lg px-4 py-3 text-base font-medium hover:bg-white/5"
+                style={{ color: pathname.startsWith(link.href) ? "#52D973" : "var(--foreground)" }}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -251,9 +259,10 @@ export default function Navigation() {
             ))}
             <Link
               href={NAV.resources.href}
-              className="mt-2 block rounded-lg border border-border bg-primary px-4 py-3 text-center text-base font-medium text-background"
+              className="mt-2 flex items-center justify-center gap-2 rounded-lg border border-border bg-primary px-4 py-3 text-center text-base font-medium text-background"
               onClick={() => setMobileOpen(false)}
             >
+              <i className="fi fi-br-box-open" style={{ fontSize: "16px" }} aria-hidden />
               Enter Vault
             </Link>
           </div>
