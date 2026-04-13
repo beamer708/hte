@@ -48,6 +48,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Ensure anchored sections are not hidden behind the sticky nav (80px height) */
+[id] {
+  scroll-margin-top: 5rem;
+}
+
 body {
   color: var(--foreground);
   background-color: var(--background);
@@ -244,7 +249,7 @@ body::after {
   }
 
   .section-spacing {
-    @apply py-20 sm:py-24 lg:py-28;
+    @apply py-12 sm:py-20 lg:py-28;
   }
 }
 

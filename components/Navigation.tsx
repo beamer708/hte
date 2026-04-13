@@ -68,25 +68,7 @@ export default function Navigation() {
                 aria-expanded={resourcesOpen}
                 aria-haspopup="menu"
               >
-                <i
-                  className={isResourcesActive ? "fi fi-sr-box-open" : "fi fi-br-box-open"}
-                  style={{
-                    fontSize: "18px",
-                    color: isResourcesActive ? "#52D973" : "#888888",
-                  }}
-                  aria-hidden
-                />
                 {NAV.resources.label}
-                <i
-                  className="fi fi-br-arrow-right"
-                  style={{
-                    fontSize: "11px",
-                    color: "#888888",
-                    transition: "transform 0.15s",
-                    transform: resourcesOpen ? "rotate(90deg)" : "rotate(0deg)",
-                  }}
-                  aria-hidden
-                />
               </button>
               {resourcesOpen && (
                 <div
@@ -121,22 +103,7 @@ export default function Navigation() {
                 aria-expanded={communityOpen}
                 aria-haspopup="menu"
               >
-                <i
-                  className="fi fi-br-users"
-                  style={{ fontSize: "18px", color: "#888888" }}
-                  aria-hidden
-                />
                 Community
-                <i
-                  className="fi fi-br-arrow-right"
-                  style={{
-                    fontSize: "11px",
-                    color: "#888888",
-                    transition: "transform 0.15s",
-                    transform: communityOpen ? "rotate(90deg)" : "rotate(0deg)",
-                  }}
-                  aria-hidden
-                />
               </button>
               {communityOpen && (
                 <div
@@ -175,11 +142,6 @@ export default function Navigation() {
                   className="btn-ghost rounded-lg py-2"
                   style={isActive ? { color: "#52D973" } : undefined}
                 >
-                  <i
-                    className={isActive ? "fi fi-sr-info" : "fi fi-br-info"}
-                    style={{ fontSize: "18px", color: isActive ? "#52D973" : "#888888" }}
-                    aria-hidden
-                  />
                   {link.label}
                 </Link>
               );
@@ -191,9 +153,7 @@ export default function Navigation() {
             <Link
               href={NAV.resources.href}
               className="ml-2 btn-primary px-5 py-2.5"
-              style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
             >
-              <i className="fi fi-br-box-open" style={{ fontSize: "16px" }} aria-hidden />
               Enter Vault
             </Link>
           </div>
@@ -217,14 +177,14 @@ export default function Navigation() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-border bg-background animate-in-fade">
-          <div className="page-container space-y-1 py-5">
+        <div className="lg:hidden border-t border-[#1f1f1f] bg-[#0A0A0A] animate-in-fade">
+          <div className="page-container py-3">
             {resourceItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-2 rounded-lg px-4 py-3 text-base font-medium hover:bg-white/5"
-                style={{ color: pathname.startsWith(item.href) ? "#52D973" : undefined }}
+                className="flex w-full items-center border-b border-[#1f1f1f] px-4 py-4 text-base font-medium hover:bg-white/5"
+                style={{ color: pathname.startsWith(item.href) ? "#52D973" : "var(--foreground)" }}
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -233,7 +193,7 @@ export default function Navigation() {
             {isStaffApplicationOpen && (
               <Link
                 href={NAV.staffApplication.href}
-                className="flex items-center gap-2 rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
+                className="flex w-full items-center border-b border-[#1f1f1f] px-4 py-4 text-base font-medium text-foreground hover:bg-white/5"
                 onClick={() => setMobileOpen(false)}
               >
                 Staff Application
@@ -241,7 +201,7 @@ export default function Navigation() {
             )}
             <Link
               href="/resource-suggestion"
-              className="flex items-center gap-2 rounded-lg px-4 py-3 text-base font-medium text-foreground hover:bg-white/5"
+              className="flex w-full items-center border-b border-[#1f1f1f] px-4 py-4 text-base font-medium text-foreground hover:bg-white/5"
               onClick={() => setMobileOpen(false)}
             >
               Submit a Suggestion
@@ -250,21 +210,22 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center gap-2 rounded-lg px-4 py-3 text-base font-medium hover:bg-white/5"
+                className="flex w-full items-center border-b border-[#1f1f1f] px-4 py-4 text-base font-medium hover:bg-white/5"
                 style={{ color: pathname.startsWith(link.href) ? "#52D973" : "var(--foreground)" }}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href={NAV.resources.href}
-              className="mt-2 flex items-center justify-center gap-2 rounded-lg border border-border bg-primary px-4 py-3 text-center text-base font-medium text-background"
-              onClick={() => setMobileOpen(false)}
-            >
-              <i className="fi fi-br-box-open" style={{ fontSize: "16px" }} aria-hidden />
-              Enter Vault
-            </Link>
+            <div className="pt-3 pb-2">
+              <Link
+                href={NAV.resources.href}
+                className="flex w-full items-center justify-center rounded-lg border border-border bg-primary px-4 py-3 text-center text-base font-medium text-background"
+                onClick={() => setMobileOpen(false)}
+              >
+                Enter Vault
+              </Link>
+            </div>
           </div>
         </div>
       )}
