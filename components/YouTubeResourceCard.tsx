@@ -1,3 +1,5 @@
+"use client";
+
 import { Resource, getYouTubeThumbnail } from "@/lib/resources";
 import Icon from "@/components/Icon";
 
