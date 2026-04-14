@@ -46,7 +46,21 @@ export default function YouTubeResourceCard({ resource }: YouTubeResourceCardPro
         )}
         {resource.isNew && (
           <div className="absolute top-2 left-2 z-10">
-            <span className="resource-tag">New</span>
+            <span
+              style={{
+                background: "rgba(82,217,115,0.12)",
+                border: "1px solid rgba(82,217,115,0.3)",
+                color: "#52D973",
+                fontSize: "11px",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                borderRadius: "6px",
+                padding: "2px 8px",
+                textTransform: "uppercase",
+              }}
+            >
+              New
+            </span>
           </div>
         )}
         {/* YouTube badge with official SVG logo */}

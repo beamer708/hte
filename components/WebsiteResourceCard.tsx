@@ -32,6 +32,9 @@ export default function WebsiteResourceCard({ resource }: WebsiteResourceCardPro
         {resource.description}
       </p>
 
+      {/* Curator label */}
+      <p className="mb-4 text-[11px] text-[#888888] italic">Curated — not owned by @howtoerlc</p>
+
       {/* Footer */}
       <div className="flex items-center justify-between gap-3 border-t border-border/40 pt-3">
         <span className="text-xs text-muted-foreground truncate">

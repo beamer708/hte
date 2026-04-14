@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Resource } from "@/lib/resources";
 import YouTubeResourceCard from "@/components/YouTubeResourceCard";
+import WebsiteResourceCard from "@/components/WebsiteResourceCard";
+import DiscordCommunityCard from "@/components/DiscordCommunityCard";
 
 function SectionHeader({ label }: { label: string }) {
   return (
@@ -24,6 +26,23 @@ interface ResourcesClientProps {
   resources: Resource[];
 }
 
+const youtubeCategories = [
+  "Graphic Design",
+  "Discord Server Visuals",
+  "Automation and Systems",
+  "Emergency Response Liberty County Helpful Tips",
+];
+
+const websiteCategories = [
+  "Graphic Design Tools",
+  "Fonts and Typography",
+  "Color Palette Tools",
+  "Icons and Emojis",
+  "Animated Icons",
+  "Design Inspiration",
+  "Discord Utilities",
+];
+
 export default function ResourcesClient({ resources }: ResourcesClientProps) {
   const [query, setQuery] = useState("");
 
@@ -36,6 +55,25 @@ export default function ResourcesClient({ resources }: ResourcesClientProps) {
   );
 
   const isFiltering = query.trim().length > 0;
+
+  // Partition resources
+  const newResources = filteredResources.filter((r) => r.id === "new-1" || r.id === "new-2");
+
+  const youtubeByCategory = youtubeCategories.map((cat) => ({
+    category: cat,
+    items: filteredResources.filter(
+      (r) => r.section === "youtube" && r.category === cat && r.id !== "new-1" && r.id !== "new-2"
+    ),
+  })).filter((g) => g.items.length > 0);
+
+  const websiteByCategory = websiteCategories.map((cat) => ({
+    category: cat,
+    items: filteredResources.filter((r) => r.section === "website" && r.category === cat),
+  })).filter((g) => g.items.length > 0);
+
+  const discordResources = filteredResources.filter((r) => r.section === "discord");
+
+  const hasResults = filteredResources.length > 0;
 
   return (
     <div className="py-12 sm:py-16">
@@ -103,7 +141,7 @@ export default function ResourcesClient({ resources }: ResourcesClientProps) {
         </div>
 
         {/* No results */}
-        {isFiltering && filteredResources.length === 0 && (
+        {isFiltering && !hasResults && (
           <div className="py-12 text-center">
             <p className="text-base text-muted-foreground">
               No resources matched{" "}
@@ -119,19 +157,61 @@ export default function ResourcesClient({ resources }: ResourcesClientProps) {
           </div>
         )}
 
-        {/* Video Resources */}
-        {filteredResources.length > 0 && (
-          <section aria-labelledby="section-video">
-            <SectionHeader label="Video Resources" />
-            <div
-              id="section-video"
-              className="grid gap-5 sm:grid-cols-2"
-            >
-              {filteredResources.map((resource) => (
-                <YouTubeResourceCard key={resource.id} resource={resource} />
-              ))}
-            </div>
-          </section>
+        {hasResults && (
+          <div className="space-y-20">
+
+            {/* ── New ─────────────────────────────────────────────────────── */}
+            {newResources.length > 0 && (
+              <section aria-labelledby="section-new">
+                <SectionHeader label="New" />
+                <div id="section-new" className="grid gap-5 sm:grid-cols-2">
+                  {newResources.map((r) => (
+                    <YouTubeResourceCard key={r.id} resource={r} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* ── YouTube by category ──────────────────────────────────────── */}
+            {youtubeByCategory.map(({ category, items }) => (
+              <section key={category} aria-labelledby={`section-yt-${category}`}>
+                <SectionHeader label={category} />
+                <div id={`section-yt-${category}`} className="grid gap-5 sm:grid-cols-2">
+                  {items.map((r) => (
+                    <YouTubeResourceCard key={r.id} resource={r} />
+                  ))}
+                </div>
+              </section>
+            ))}
+
+            {/* ── Websites & Tools by category ────────────────────────────── */}
+            {websiteByCategory.map(({ category, items }) => (
+              <section key={category} aria-labelledby={`section-ws-${category}`}>
+                <SectionHeader label={category} />
+                <div
+                  id={`section-ws-${category}`}
+                  className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                >
+                  {items.map((r) => (
+                    <WebsiteResourceCard key={r.id} resource={r} />
+                  ))}
+                </div>
+              </section>
+            ))}
+
+            {/* ── Discord Communities ──────────────────────────────────────── */}
+            {discordResources.length > 0 && (
+              <section aria-labelledby="section-discord">
+                <SectionHeader label="Discord Communities" />
+                <div id="section-discord" className="divide-y divide-border/40 rounded-xl border border-border/60 bg-card px-5">
+                  {discordResources.map((r) => (
+                    <DiscordCommunityCard key={r.id} resource={r} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+          </div>
         )}
       </div>
     </div>
