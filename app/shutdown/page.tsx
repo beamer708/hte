@@ -8,12 +8,30 @@ const errorMessages: Record<string, string> = {
   wrong_password: "Incorrect password. Please try again.",
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "howtoerlc",
+  url: "https://howtoerlc.xyz",
+  description:
+    "howtoerlc is the free learning resource for Emergency Response: Liberty County (ERLC) on Roblox. Learn how to design, run, and grow an ERLC server — completely free.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://howtoerlc.xyz/?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default async function ShutdownPage({ searchParams }: Props) {
   const { error } = await searchParams;
   const errorMessage = error ? (errorMessages[error] ?? "Access denied.") : null;
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background px-4 text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Background grid — matches global body::before */}
       <div
         className="pointer-events-none fixed inset-0 -z-10"

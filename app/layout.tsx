@@ -12,24 +12,54 @@ import AnalyticsTracker from "@/components/AnalyticsTracker";
 import LoadingScreen from "@/components/LoadingScreen";
 
 export const metadata: Metadata = {
-  title: "howtoerlc — Coming Soon",
-  description: "A completely free course showing everyone how to design, run a server, and more. Coming soon.",
-  keywords: ["ERLC", "Roblox", "roleplay", "community", "resources", "guides"],
+  metadataBase: new URL("https://howtoerlc.xyz"),
+  title: {
+    default: "howtoerlc — Free ERLC Tutorials & Courses",
+    template: "%s | howtoerlc",
+  },
+  description:
+    "howtoerlc is the free learning resource for Emergency Response: Liberty County (ERLC) on Roblox. Learn how to design, run, and grow an ERLC server — completely free.",
+  keywords: [
+    "howtoerlc",
+    "ERLC",
+    "Emergency Response Liberty County",
+    "ERLC tutorial",
+    "ERLC guide",
+    "ERLC server",
+    "ERLC course",
+    "ERLC free course",
+    "how to ERLC",
+    "ERLC Roblox",
+    "ERLC roleplay",
+    "ERLC server design",
+    "ERLC server setup",
+    "learn ERLC",
+    "Roblox ERLC guide",
+    "Liberty County Roblox",
+    "ERLC tips",
+    "ERLC community",
+  ],
   icons: {
     icon: "/GreenLogo.png",
     shortcut: "/GreenLogo.png",
     apple: "/GreenLogo.png",
   },
   openGraph: {
-    title: "@howtoerlc",
-    siteName: "@howtoerlc",
-    description: "Coming soon — a completely free course showing everyone how to design, run a server, and more.",
+    title: "howtoerlc — Free ERLC Tutorials & Courses",
+    siteName: "howtoerlc",
+    description:
+      "The free learning resource for Emergency Response: Liberty County (ERLC). Courses on server design, roleplay, and more. Coming soon.",
     type: "website",
+    url: "https://howtoerlc.xyz",
   },
   twitter: {
     card: "summary",
-    title: "@howtoerlc",
-    description: "Coming soon — a completely free course showing everyone how to design, run a server, and more.",
+    title: "howtoerlc — Free ERLC Tutorials & Courses",
+    description:
+      "The free learning resource for Emergency Response: Liberty County (ERLC). Courses on server design, roleplay, and more. Coming soon.",
+  },
+  alternates: {
+    canonical: "https://howtoerlc.xyz",
   },
 };
 
