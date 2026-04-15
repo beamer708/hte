@@ -12,8 +12,8 @@ import AnalyticsTracker from "@/components/AnalyticsTracker";
 import LoadingScreen from "@/components/LoadingScreen";
 
 export const metadata: Metadata = {
-  title: "howtoerlc",
-  description: "A curated resource vault built for ERLC communities that mean business.",
+  title: "howtoerlc — Coming Soon",
+  description: "A completely free course showing everyone how to design, run a server, and more. Coming soon.",
   keywords: ["ERLC", "Roblox", "roleplay", "community", "resources", "guides"],
   icons: {
     icon: "/GreenLogo.png",
@@ -21,11 +21,15 @@ export const metadata: Metadata = {
     apple: "/GreenLogo.png",
   },
   openGraph: {
-    title: "howtoerlc",
+    title: "@howtoerlc",
     siteName: "@howtoerlc",
-    description: "A curated resource vault built for ERLC communities that mean business.",
+    description: "Coming soon — a completely free course showing everyone how to design, run a server, and more.",
     type: "website",
-    images: ["/GreenLogo.png"],
+  },
+  twitter: {
+    card: "summary",
+    title: "@howtoerlc",
+    description: "Coming soon — a completely free course showing everyone how to design, run a server, and more.",
   },
 };
 
