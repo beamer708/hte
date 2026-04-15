@@ -67,7 +67,7 @@ export async function proxy(request: NextRequest) {
         // Check for valid beta session cookie
         const betaSession = request.cookies.get("beta_access");
         if (betaSession?.value !== "granted") {
-          return NextResponse.redirect(new URL("/shutdown", request.url));
+          return NextResponse.rewrite(new URL("/shutdown", request.url));
         }
       }
     }

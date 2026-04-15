@@ -71,6 +71,19 @@ export const resources: Resource[] = [
     thumbnailUrl: "",
     isNew: true,
   },
+  {
+    id: "new-3",
+    title: "ERLC Tutorial",
+    description: "Curated — not owned by @howtoerlc",
+    type: "video",
+    url: "https://youtu.be/EcbgbKtOELY?si=YiAEsiLE2__m8iug",
+    category: "Emergency Response Liberty County Helpful Tips",
+    creator: "",
+    section: "youtube",
+    channelName: "",
+    thumbnailUrl: "",
+    isNew: true,
+  },
 
   // ── YouTube Resources ────────────────────────────────────────────────────────
   {
