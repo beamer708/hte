@@ -48,10 +48,10 @@ export default async function ShutdownPage({ searchParams }: Props) {
               </span>
             </div>
 
-            {/* Main lock icon — 64px, green */}
+            {/* Main rocket icon — 64px, green */}
             <div className="flex justify-center mb-6">
               <i
-                className="fi fi-sr-lock"
+                className="fi fi-sr-rocket"
                 style={{ fontSize: "64px", color: "#52D973" }}
                 aria-hidden
               />
@@ -59,16 +59,16 @@ export default async function ShutdownPage({ searchParams }: Props) {
 
             {/* Status badge */}
             <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/35 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-              <i className="fi fi-sr-lock" style={{ fontSize: "11px" }} aria-hidden />
-              Private Beta
+              <i className="fi fi-sr-rocket" style={{ fontSize: "11px" }} aria-hidden />
+              Coming Soon
             </span>
 
             <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Site Under Maintenance
+              howtoerlc — Coming Soon
             </h1>
             <p className="mx-auto mt-3 max-w-xl leading-relaxed text-muted-foreground">
-              @howtoerlc is currently in a private beta. The site is only accessible to approved
-              testers. Join the Discord server to stay updated.
+              We&apos;re currently building a team to make this project happen. howtoerlc will be a
+              completely free course showing everyone how to design, run a server, and more.
             </p>
           </div>
 
@@ -87,14 +87,14 @@ export default async function ShutdownPage({ searchParams }: Props) {
           {/* Info panel */}
           <div className="mt-7 rounded-2xl border border-border/70 bg-background/55 p-4">
             <p className="text-center text-sm text-muted-foreground">
-              Beta access requires the designated role in the @howtoerlc Discord server.
+              Join our Discord to stay up to date and be the first to know when we launch.
             </p>
           </div>
 
           {/* Actions */}
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href="https://discord.gg/HjcqH2djjC"
+              href="https://discord.gg/77whJbDFsP"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary w-full sm:w-auto"
