@@ -5,14 +5,7 @@ interface Props {
 }
 
 const errorMessages: Record<string, string> = {
-  no_access: "You don't have the required beta role in the Discord server.",
-  not_in_guild: "Your account is not a member of the @howtoerlc Discord server.",
-  blacklisted: "Your account has been removed from the beta program.",
-  not_logged_in: "Please log in with Discord to request access.",
-  discord_error: "Could not verify your Discord roles. Please try again.",
-  config_error: "Beta access is not configured yet. Contact an admin.",
-  auth_error: "Authentication failed. Please try again.",
-  no_discord_id: "Could not retrieve your Discord ID. Please try again.",
+  wrong_password: "Incorrect password. Please try again.",
 };
 
 export default async function ShutdownPage({ searchParams }: Props) {
@@ -105,6 +98,29 @@ export default async function ShutdownPage({ searchParams }: Props) {
               </svg>
               Join Discord
             </a>
+          </div>
+
+          {/* Password access */}
+          <div className="mt-8 border-t border-border/40 pt-7">
+            <p className="text-center text-xs text-muted-foreground/60 mb-4 uppercase tracking-widest">
+              Have access?
+            </p>
+            <form action="/api/site-auth" method="POST" className="flex flex-col gap-3 sm:flex-row">
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                autoComplete="current-password"
+                required
+                className="flex-1 rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
+              />
+              <button
+                type="submit"
+                className="rounded-xl border border-primary/40 bg-primary/10 px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary/20 whitespace-nowrap"
+              >
+                Enter site
+              </button>
+            </form>
           </div>
         </div>
       </div>

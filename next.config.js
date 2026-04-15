@@ -1,16 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.howtoerlc.xyz" }],
-        destination: "https://howtoerlc.xyz/:path*",
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     return [
       {
