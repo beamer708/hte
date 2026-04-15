@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 const ALLOWED_PREFIXES = [
   "/shutdown",
   "/api/auth",
+  "/api/site-auth",
   "/api/beta-check",
   "/api/beta-logout",
   "/api/beta-config",
@@ -11,6 +12,7 @@ const ALLOWED_PREFIXES = [
   "/favicon.ico",
   "/Media",
   "/GreenLogo.png",
+  "/opengraph-image",
 ];
 
 function unauthorizedResponse(): NextResponse {
@@ -48,12 +50,10 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Attach pathname as a header so server-component layouts can read it
-  // (e.g. to bypass the shutdown notice for /admin routes).
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-pathname", pathname);
 
   // ── Shutdown gate ───────────────────────────────────────────────────────────
-  // Always allow static assets, auth, and beta-flow paths through
   const isAllowed = ALLOWED_PREFIXES.some((p) => pathname.startsWith(p));
 
   if (!isAllowed) {
@@ -64,10 +64,13 @@ export async function proxy(request: NextRequest) {
       const isAdmin = pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
 
       if (!isAdmin) {
-        // Check for valid beta session cookie
-        const betaSession = request.cookies.get("beta_access");
-        if (betaSession?.value !== "granted") {
-          return NextResponse.rewrite(new URL("/shutdown", request.url));
+        // Allow through if the user has a valid password access cookie
+        const siteAccess = request.cookies.get("site_access");
+        if (siteAccess?.value !== "granted") {
+          // Rewrite to /shutdown so the URL stays at / (no redirect visible to user)
+          const rewriteUrl = request.nextUrl.clone();
+          rewriteUrl.pathname = "/shutdown";
+          return NextResponse.rewrite(rewriteUrl, { request: { headers: requestHeaders } });
         }
       }
     }
@@ -83,7 +86,6 @@ export async function proxy(request: NextRequest) {
     const password = process.env.ADMIN_DASHBOARD_PASSWORD;
 
     if (!username || !password) {
-      // Credentials not configured — fall through to client-side login form.
       return NextResponse.next({ request: { headers: requestHeaders } });
     }
 
@@ -116,6 +118,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Run on all routes so every layout can read x-pathname
   matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };
