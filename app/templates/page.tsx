@@ -1,5 +1,24 @@
 
+// Set to false to re-enable the templates page
+const COMING_SOON = true;
+
 export default function TemplatesPage() {
+  if (COMING_SOON) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center px-4 py-20 text-center">
+        <div className="mx-auto w-full max-w-md rounded-3xl border border-border bg-card p-10">
+          <i className="fi fi-sr-rocket" style={{ fontSize: "48px", color: "#52D973" }} aria-hidden />
+          <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
+            Templates — Coming Soon
+          </h1>
+          <p className="mx-auto mt-3 leading-relaxed text-muted-foreground">
+            We&apos;re still setting things up. Templates will be available when howtoerlc launches.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-16 sm:py-20">
       <div className="page-container max-w-3xl">

@@ -1,5 +1,8 @@
 import ScrollAnimator from "@/components/ScrollAnimator";
 
+// Set to false to re-enable the tools page
+const COMING_SOON = true;
+
 const DESIGN_TOOLS = [
   {
     name: "Adobe Illustrator",
@@ -20,6 +23,22 @@ const DESIGN_TOOLS = [
 ];
 
 export default function ToolsPage() {
+  if (COMING_SOON) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center px-4 py-20 text-center">
+        <div className="mx-auto w-full max-w-md rounded-3xl border border-border bg-card p-10">
+          <i className="fi fi-sr-rocket" style={{ fontSize: "48px", color: "#52D973" }} aria-hidden />
+          <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
+            Tools — Coming Soon
+          </h1>
+          <p className="mx-auto mt-3 leading-relaxed text-muted-foreground">
+            We&apos;re still setting things up. Tools will be available when howtoerlc launches.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-16 sm:py-20">
       <ScrollAnimator />
