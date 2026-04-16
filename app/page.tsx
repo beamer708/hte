@@ -950,9 +950,6 @@ Keep ranks simple enough that members understand the chain of command on first r
               >
                 Try the Assistant
               </Link>
-              <p style={{ fontSize: "12px", color: "#444444", marginTop: "10px" }}>
-                Powered by Mistral AI · Free to use
-              </p>
             </div>
           </div>
         </div>
