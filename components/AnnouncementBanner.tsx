@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const STORAGE_KEY = "howtoerlc-announcement-dismissed-v1";
+const STORAGE_KEY = "howtoerlc-announcement-dismissed-v2";
 
 export default function AnnouncementBanner() {
   const [visible, setVisible] = useState(false);
@@ -29,19 +29,14 @@ export default function AnnouncementBanner() {
   if (!visible) return null;
 
   return (
-    <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:"12px", borderBottom:"0.5px solid rgba(240,236,224,0.08)", backgroundColor:"#0a0a09", padding:"8px 24px" }}>
-      <a
-        href="https://howtoerlcstatus.betteruptime.com/maintenance/868358"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ fontSize:"11px", fontWeight:300, letterSpacing:"0.04em", color:"var(--muted-foreground)", textDecoration:"none" }}
-      >
-        Some features may be temporarily unavailable.
-      </a>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", borderBottom: "0.5px solid rgba(240,236,224,0.08)", backgroundColor: "#0a0a09", padding: "8px 24px" }}>
+      <span style={{ fontSize: "11px", fontWeight: 300, letterSpacing: "0.04em", color: "var(--muted-foreground)" }}>
+        @howtoerlc coming soon.
+      </span>
       <button
         onClick={dismiss}
         aria-label="Dismiss announcement"
-        style={{ marginLeft:"auto", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", width:"16px", height:"16px", background:"none", border:"none", cursor:"pointer", color:"var(--muted-foreground)", padding:0 }}
+        style={{ marginLeft: "auto", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", width: "16px", height: "16px", background: "none", border: "none", cursor: "pointer", color: "var(--muted-foreground)", padding: 0 }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
