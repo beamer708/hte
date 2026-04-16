@@ -1,4 +1,5 @@
 import Image from "next/image";
+import PasswordForm from "@/components/PasswordForm";
 
 interface Props {
   searchParams: Promise<{ error?: string }>;
@@ -118,28 +119,7 @@ export default async function ShutdownPage({ searchParams }: Props) {
             </a>
           </div>
 
-          {/* Password access */}
-          <div className="mt-8 border-t border-border/40 pt-7">
-            <p className="text-center text-xs text-muted-foreground/60 mb-4 uppercase tracking-widest">
-              Have access?
-            </p>
-            <form action="/api/site-auth" method="POST" className="flex flex-col gap-3 sm:flex-row">
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter password"
-                autoComplete="current-password"
-                required
-                className="flex-1 rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
-              />
-              <button
-                type="submit"
-                className="rounded-xl border border-primary/40 bg-primary/10 px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary/20 whitespace-nowrap"
-              >
-                Enter site
-              </button>
-            </form>
-          </div>
+          <PasswordForm />
         </div>
       </div>
     </div>
