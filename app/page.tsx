@@ -7,6 +7,7 @@ import YouTubeResourceCard from "@/components/YouTubeResourceCard";
 import { guides } from "@/lib/guides";
 import { templates } from "@/lib/templates";
 import { tools } from "@/lib/tools";
+import StatsSection from "@/components/StatsSection";
 
 // ── SVG helpers ──────────────────────────────────────────────────────────────
 
@@ -151,12 +152,6 @@ export default async function Home() {
 
   const resourceTotal = resources.length;
 
-  const stats = [
-    { value: `${resources.length} Resources`, label: "Curated for ERLC communities" },
-    { value: `${templates.length} Templates`, label: "Ready to download and use" },
-    { value: `${tools.length} Tools`, label: "Design and build your server" },
-  ];
-
   return (
     <div style={{ background: "#0A0A0A" }}>
 
@@ -262,37 +257,11 @@ export default async function Home() {
       </section>
 
       {/* ── STATS ROW ────────────────────────────────────────────────────── */}
-      <section style={{ padding: "80px 0", borderTop: "1px solid #1f1f1f", borderBottom: "1px solid #1f1f1f" }}>
-        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center gap-10 sm:flex-row sm:justify-center sm:gap-0">
-            {stats.map((stat, i) => (
-              <div key={stat.value} className="flex items-center">
-                <div className="text-center px-8 sm:px-14">
-                  <p
-                    style={{
-                      fontSize: "clamp(20px, 3vw, 32px)",
-                      fontWeight: 800,
-                      color: "#F5F5F0",
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    {stat.value}
-                  </p>
-                  <p style={{ fontSize: "13px", color: "#888888", marginTop: "6px" }}>
-                    {stat.label}
-                  </p>
-                </div>
-                {i < stats.length - 1 && (
-                  <div
-                    className="hidden sm:block h-10 w-px"
-                    style={{ background: "#1f1f1f" }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <StatsSection
+        resourceCount={resources.length}
+        templateCount={templates.length}
+        toolCount={tools.length}
+      />
 
       {/* ── TEMPLATES SHOWCASE (real data) ───────────────────────────────── */}
       <section style={{ background: "#0D0D0D", padding: "120px 48px" }} className="!px-5 sm:!px-12">
