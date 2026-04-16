@@ -18,13 +18,36 @@ export default function PasswordForm() {
             placeholder="Enter password"
             autoComplete="current-password"
             required
-            className="w-full rounded-xl border border-border/80 bg-card px-4 py-3 pr-11 text-base text-foreground placeholder:text-muted-foreground/40 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/20"
+            style={{
+              width: "100%",
+              background: "#1a1a1a",
+              color: "#f5f5f0",
+              border: "1px solid rgba(255,255,255,0.18)",
+              borderRadius: "12px",
+              padding: "12px 44px 12px 16px",
+              fontSize: "16px",
+              outline: "none",
+            }}
+            onFocus={(e) => (e.currentTarget.style.borderColor = "#52D973")}
+            onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.18)")}
           />
           <button
             type="button"
             onClick={() => setShow((s) => !s)}
             aria-label={show ? "Hide password" : "Show password"}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/60 hover:text-muted-foreground transition-colors"
+            style={{
+              position: "absolute",
+              right: "12px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "rgba(255,255,255,0.4)",
+              display: "flex",
+              alignItems: "center",
+              padding: 0,
+            }}
           >
             {show ? (
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -42,7 +65,17 @@ export default function PasswordForm() {
         </div>
         <button
           type="submit"
-          className="rounded-xl bg-primary px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 whitespace-nowrap"
+          style={{
+            background: "#52D973",
+            color: "#0a0a0a",
+            border: "none",
+            borderRadius: "12px",
+            padding: "12px 24px",
+            fontSize: "14px",
+            fontWeight: 600,
+            cursor: "pointer",
+            whiteSpace: "nowrap",
+          }}
         >
           Enter site
         </button>
