@@ -1,7 +1,41 @@
 import ScrollAnimator from "@/components/ScrollAnimator";
-import { DESIGN_TOOLS } from "@/lib/tools";
+
+const DESIGN_TOOLS = [
+  {
+    name: "Adobe Illustrator",
+    category: "Vector Design",
+    label: "Paid" as const,
+    description:
+      "The industry standard for vector based design. Ideal for creating logos, icons, server banners, and any graphic that needs to scale cleanly at any size. Vectors stay sharp whether displayed at 16px or 1600px making Illustrator the right tool for brand identity work.",
+    href: "https://adobe.com/products/illustrator",
+  },
+  {
+    name: "Adobe Photoshop",
+    category: "Photo Editing and Raster Design",
+    label: "Paid" as const,
+    description:
+      "The go-to tool for livery design, texture work, and any design that involves photo manipulation or raster based artwork. If you are building ERLC liveries, custom overlays, or detailed scene compositions, Photoshop is where that work gets done.",
+    href: "https://adobe.com/products/photoshop",
+  },
+];
 
 export default function ToolsPage() {
+  if (COMING_SOON) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center px-4 py-20 text-center">
+        <div className="mx-auto w-full max-w-md rounded-3xl border border-border bg-card p-10">
+          <i className="fi fi-sr-rocket" style={{ fontSize: "48px", color: "#52D973" }} aria-hidden />
+          <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
+            Tools — Coming Soon
+          </h1>
+          <p className="mx-auto mt-3 leading-relaxed text-muted-foreground">
+            We&apos;re still setting things up. Tools will be available when howtoerlc launches.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-16 sm:py-20">
       <ScrollAnimator />

@@ -50,7 +50,7 @@ export const resources: Resource[] = [
     title: "ERLC Tutorial",
     description: "Curated — not owned by @howtoerlc",
     type: "video",
-    url: "https://youtu.be/Ib8UBwu3yGA",
+    url: "https://youtu.be/EcbgbKtOELY?si=YiAEsiLE2__m8iug",
     category: "Emergency Response Liberty County Helpful Tips",
     creator: "",
     section: "youtube",
@@ -63,7 +63,7 @@ export const resources: Resource[] = [
     title: "ERLC Tutorial",
     description: "Curated — not owned by @howtoerlc",
     type: "video",
-    url: "https://youtu.be/LdPHurNaIec",
+    url: "https://youtube.com/shorts/u4jpMXq_faM?si=Wx5a2y_GKYbgcOkD",
     category: "Emergency Response Liberty County Helpful Tips",
     creator: "",
     section: "youtube",
@@ -76,7 +76,7 @@ export const resources: Resource[] = [
     title: "ERLC Tutorial",
     description: "Curated — not owned by @howtoerlc",
     type: "video",
-    url: "https://youtu.be/EcbgbKtOELY?si=YiAEsiLE2__m8iug",
+    url: "https://youtube.com/shorts/1iOtHQVXOCA?si=30mhR14pnUaeTJIK",
     category: "Emergency Response Liberty County Helpful Tips",
     creator: "",
     section: "youtube",
@@ -483,7 +483,6 @@ export const resources: Resource[] = [
     creator: "Designercize",
     creatorUrl: "https://designercize.com/",
     section: "website",
-    isNew: true,
   },
   {
     id: "ws-33",
@@ -495,7 +494,6 @@ export const resources: Resource[] = [
     creator: "Font Joy",
     creatorUrl: "https://fontjoy.com/",
     section: "website",
-    isNew: true,
   },
   {
     id: "34",
@@ -507,7 +505,6 @@ export const resources: Resource[] = [
     creator: "Fonts In Use",
     creatorUrl: "https://fontsinuse.com/",
     section: "website",
-    isNew: true,
   },
   {
     id: "35",
@@ -519,7 +516,6 @@ export const resources: Resource[] = [
     creator: "Font Space",
     creatorUrl: "https://www.fontspace.com/",
     section: "website",
-    isNew: true,
   },
   {
     id: "36",
@@ -531,7 +527,6 @@ export const resources: Resource[] = [
     creator: "Logo Lab",
     creatorUrl: "https://logolab.app/",
     section: "website",
-    isNew: true,
   },
   {
     id: "37",
@@ -543,7 +538,6 @@ export const resources: Resource[] = [
     creator: "YouLearn",
     creatorUrl: "https://www.youlearn.ai",
     section: "website",
-    isNew: true,
   },
   {
     id: "38",
@@ -555,7 +549,6 @@ export const resources: Resource[] = [
     creator: "Thumbnail Preview",
     creatorUrl: "https://thumbnailpreview.com/",
     section: "website",
-    isNew: true,
   },
   {
     id: "39",
@@ -567,7 +560,6 @@ export const resources: Resource[] = [
     creator: "Best Free Fonts",
     creatorUrl: "https://bestfreefonts.com",
     section: "website",
-    isNew: true,
   },
   {
     id: "40",
@@ -579,7 +571,6 @@ export const resources: Resource[] = [
     creator: "Uncut",
     creatorUrl: "https://uncut.wtf",
     section: "website",
-    isNew: true,
   },
   {
     id: "41",
@@ -591,7 +582,6 @@ export const resources: Resource[] = [
     creator: "Fontshare",
     creatorUrl: "https://www.fontshare.com",
     section: "website",
-    isNew: true,
   },
   {
     id: "42",
@@ -603,7 +593,6 @@ export const resources: Resource[] = [
     creator: "TypeType",
     creatorUrl: "https://typetype.org",
     section: "website",
-    isNew: true,
   },
   {
     id: "43",
@@ -615,7 +604,6 @@ export const resources: Resource[] = [
     creator: "Reve",
     creatorUrl: "https://app.reve.com",
     section: "website",
-    isNew: true,
   },
   {
     id: "44",
@@ -627,7 +615,6 @@ export const resources: Resource[] = [
     creator: "Finsweet",
     creatorUrl: "https://finsweet.com",
     section: "website",
-    isNew: true,
   },
   {
     id: "45",
@@ -639,7 +626,6 @@ export const resources: Resource[] = [
     creator: "Lordicon",
     creatorUrl: "https://lordicon.com",
     section: "website",
-    isNew: true,
   },
   {
     id: "46",
@@ -651,7 +637,6 @@ export const resources: Resource[] = [
     creator: "LottieFiles",
     creatorUrl: "https://lottiefiles.com",
     section: "website",
-    isNew: true,
   },
   {
     id: "47",
@@ -663,7 +648,6 @@ export const resources: Resource[] = [
     creator: "Cosmos",
     creatorUrl: "https://www.cosmos.so",
     section: "website",
-    isNew: true,
   },
   {
     id: "48",
@@ -675,7 +659,6 @@ export const resources: Resource[] = [
     creator: "Same Energy",
     creatorUrl: "https://same.energy",
     section: "website",
-    isNew: true,
   },
   {
     id: "49",
@@ -687,7 +670,6 @@ export const resources: Resource[] = [
     creator: "Curation of Curations",
     creatorUrl: "https://www.curationofcurations.com",
     section: "website",
-    isNew: true,
   },
 
   // ── Discord Community Resources ──────────────────────────────────────────────

@@ -9,7 +9,26 @@ type SuggestionCategory = "Website" | "Server" | "Community" | "Other";
 
 type FieldErrors = Partial<Record<"username" | "discordId" | "category" | "title" | "details", string>>;
 
+// Set to false to re-enable the suggestion page
+const COMING_SOON = true;
+
 export default function ResourceSuggestionPage() {
+  if (COMING_SOON) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center px-4 py-20 text-center">
+        <div className="mx-auto w-full max-w-md rounded-3xl border border-border bg-card p-10">
+          <i className="fi fi-sr-rocket" style={{ fontSize: "48px", color: "#52D973" }} aria-hidden />
+          <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
+            Submit a Suggestion — Coming Soon
+          </h1>
+          <p className="mx-auto mt-3 leading-relaxed text-muted-foreground">
+            We&apos;re still setting things up. Suggestions will be open when howtoerlc launches.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const [discordUsername, setDiscordUsername] = useState("");
   const [discordId, setDiscordId] = useState("");
   const [category, setCategory] = useState<SuggestionCategory | "">("");
