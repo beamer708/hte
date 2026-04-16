@@ -5,6 +5,8 @@ import { resources, Resource } from "@/lib/resources";
 import { fetchOEmbed } from "@/lib/oembed";
 import YouTubeResourceCard from "@/components/YouTubeResourceCard";
 import { guides } from "@/lib/guides";
+import { templates } from "@/lib/templates";
+import { tools } from "@/lib/tools";
 
 // ── SVG helpers ──────────────────────────────────────────────────────────────
 
@@ -56,34 +58,8 @@ const featureCards = [
   { title: "Discord integration", description: "Connected to where your community lives." },
 ];
 
-// ── Stats data ────────────────────────────────────────────────────────────────
-
-const stats = [
-  { value: "ERLC focused", label: "Built for one community" },
-  { value: "100% free", label: "No paywalls. No gimmicks." },
-  { value: "Curated only", label: "We organize. We don't create." },
-];
-
-// ── Template data (sourced from /templates page) ──────────────────────────────
-
-const templates = [
-  {
-    badge: "Adobe Illustrator",
-    title: "ERLC Brand Template (Advanced)",
-    description:
-      "Professional-grade template for logos, liveries, and server branding. Requires Adobe Illustrator or Affinity Designer.",
-    label: "Download Template",
-    href: "https://github.com/v4faygo-dot/UnityTemplates-/releases/download/v1.0.0/ERLC.Brand.Template.ai",
-  },
-  {
-    badge: "Canva",
-    title: "ERLC Brand Template (Canva)",
-    description:
-      "No software needed. Open directly in Canva and start customizing immediately.",
-    label: "Open in Canva",
-    href: "https://www.canva.com/design/DAHE87sTIaQ/mx72VJV9Yq5czIGEygUcIw/edit?utm_content=DAHE87sTIaQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
-  },
-];
+// ── Template data lives in lib/templates.ts ───────────────────────────────────
+// ── Tools data lives in lib/tools.ts ─────────────────────────────────────────
 
 // ── Featured guide IDs (sourced from lib/guides.ts) ───────────────────────────
 
@@ -174,6 +150,12 @@ export default async function Home() {
     .filter((r): r is NonNullable<typeof r> => r !== undefined);
 
   const resourceTotal = resources.length;
+
+  const stats = [
+    { value: `${resources.length} Resources`, label: "Curated for ERLC communities" },
+    { value: `${templates.length} Templates`, label: "Ready to download and use" },
+    { value: `${tools.length} Tools`, label: "Design and build your server" },
+  ];
 
   return (
     <div style={{ background: "#0A0A0A" }}>
