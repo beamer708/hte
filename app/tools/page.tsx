@@ -19,6 +19,8 @@ const DESIGN_TOOLS = [
   },
 ];
 
+const COMING_SOON = true;
+
 export default function ToolsPage() {
   if (COMING_SOON) {
     return (

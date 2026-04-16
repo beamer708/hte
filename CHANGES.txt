@@ -1,0 +1,46 @@
+STATS SECTION UPDATE — Auto-counting Resources, Templates & Tools
+=================================================================
+
+WHAT WAS CHANGED
+----------------
+The homepage stats section (previously showing "ERLC focused", "100% free",
+"Curated only") now displays live counts of actual content on the site:
+
+  - XX Resources  — total count from lib/resources.ts
+  - XX Templates  — total count from lib/templates.ts
+  - XX Tools      — total count from lib/tools.ts
+
+These numbers update automatically on every build — no manual editing needed.
+
+
+FILES CREATED
+-------------
+lib/templates.ts
+  - Single source of truth for all template data.
+  - Exports a `templates` array of Template objects.
+  - To add a template: add an entry to this array and the count updates everywhere.
+
+lib/tools.ts
+  - Single source of truth for all tool data.
+  - Exports a `tools` array and the original `DESIGN_TOOLS` array.
+  - To add a tool: add an entry to this array and the count updates everywhere.
+
+
+FILES MODIFIED
+--------------
+app/page.tsx
+  - Imports `templates` from lib/templates.ts (removed local duplicate).
+  - Imports `tools` from lib/tools.ts.
+  - The `stats` array is now computed inside Home() using live .length counts.
+
+app/tools/page.tsx
+  - Now imports DESIGN_TOOLS from lib/tools.ts instead of defining it inline.
+
+
+HOW TO ADD CONTENT AND UPDATE THE COUNT
+----------------------------------------
+Resources  → add an entry to lib/resources.ts
+Templates  → add an entry to lib/templates.ts
+Tools      → add an entry to lib/tools.ts
+
+The homepage stat will reflect the new count on the next build automatically.
