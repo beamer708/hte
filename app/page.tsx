@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { NAV } from "@/lib/site-structure";
-import { resources } from "@/lib/resources";
+import { resources, Resource } from "@/lib/resources";
 import { fetchOEmbed } from "@/lib/oembed";
 import YouTubeResourceCard from "@/components/YouTubeResourceCard";
+import { guides } from "@/lib/guides";
 
 // ── SVG helpers ──────────────────────────────────────────────────────────────
 
@@ -63,6 +64,83 @@ const stats = [
   { value: "Curated only", label: "We organize. We don't create." },
 ];
 
+// ── Template data (sourced from /templates page) ──────────────────────────────
+
+const templates = [
+  {
+    badge: "Adobe Illustrator",
+    title: "ERLC Brand Template (Advanced)",
+    description:
+      "Professional-grade template for logos, liveries, and server branding. Requires Adobe Illustrator or Affinity Designer.",
+    label: "Download Template",
+    href: "https://github.com/v4faygo-dot/UnityTemplates-/releases/download/v1.0.0/ERLC.Brand.Template.ai",
+  },
+  {
+    badge: "Canva",
+    title: "ERLC Brand Template (Canva)",
+    description:
+      "No software needed. Open directly in Canva and start customizing immediately.",
+    label: "Open in Canva",
+    href: "https://www.canva.com/design/DAHE87sTIaQ/mx72VJV9Yq5czIGEygUcIw/edit?utm_content=DAHE87sTIaQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+  },
+];
+
+// ── Featured guide IDs (sourced from lib/guides.ts) ───────────────────────────
+
+const featuredGuideIds = ["server-branding", "discord-server-setup", "department-hierarchy"];
+
+// ── Featured resource IDs (sourced from lib/resources.ts) ─────────────────────
+
+const featuredResourceIds = ["16", "31", "8", "41", "discord-erlc-hub"];
+
+// ── Resource helpers ──────────────────────────────────────────────────────────
+
+function getResourceIcon(r: Resource): string {
+  if (r.section === "youtube") return "fi fi-br-play-circle";
+  if (r.section === "discord") return "fi fi-br-comment-dots";
+  return "fi fi-br-globe";
+}
+
+function getSourceLabel(r: Resource): string {
+  if (r.section === "youtube") return `YouTube · ${r.channelName || r.creator}`;
+  if (r.section === "discord") return `Discord · ${r.creator}`;
+  try {
+    const domain = new URL(r.url).hostname.replace("www.", "");
+    return `Tool · ${domain}`;
+  } catch {
+    return `Tool · ${r.creator}`;
+  }
+}
+
+// ── Shared section label ──────────────────────────────────────────────────────
+
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
+      <span
+        style={{
+          fontSize: "11px",
+          fontWeight: 700,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "#52D973",
+        }}
+      >
+        {label}
+      </span>
+      <div
+        style={{
+          height: "1px",
+          width: "40px",
+          background: "#52D973",
+          opacity: 0.4,
+          flexShrink: 0,
+        }}
+      />
+    </div>
+  );
+}
+
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function Home() {
@@ -84,6 +162,18 @@ export default async function Home() {
       return r;
     })
   );
+
+  // Featured guides from lib/guides.ts
+  const featuredGuides = featuredGuideIds
+    .map((id) => guides.find((g) => g.id === id))
+    .filter((g): g is NonNullable<typeof g> => g !== undefined);
+
+  // Featured resources from lib/resources.ts
+  const featuredResources = featuredResourceIds
+    .map((id) => resources.find((r) => r.id === id))
+    .filter((r): r is NonNullable<typeof r> => r !== undefined);
+
+  const resourceTotal = resources.length;
 
   return (
     <div style={{ background: "#0A0A0A" }}>
@@ -222,182 +312,13 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── TEMPLATES SHOWCASE ───────────────────────────────────────────── */}
+      {/* ── TEMPLATES SHOWCASE (real data) ───────────────────────────────── */}
       <section style={{ background: "#0D0D0D", padding: "120px 48px" }} className="!px-5 sm:!px-12">
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "2fr 3fr",
-              gap: "64px",
-              alignItems: "center",
-            }}
-            className="!grid-cols-1 lg:!grid-cols-[2fr_3fr]"
-          >
-            {/* Left column */}
-            <div className="text-center lg:text-left">
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "center" }} className="lg:!justify-start">
-                <span
-                  style={{
-                    fontSize: "11px",
-                    fontWeight: 700,
-                    letterSpacing: "0.14em",
-                    textTransform: "uppercase",
-                    color: "#52D973",
-                  }}
-                >
-                  Templates
-                </span>
-                <span
-                  style={{
-                    display: "inline-block",
-                    width: "40px",
-                    height: "1px",
-                    background: "#52D973",
-                    opacity: 0.4,
-                    flexShrink: 0,
-                  }}
-                />
-              </div>
-              <h2
-                style={{
-                  fontSize: "clamp(28px, 3vw, 42px)",
-                  fontWeight: 800,
-                  color: "#F5F5F0",
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.1,
-                  marginTop: "16px",
-                }}
-              >
-                Designer-made templates
-                <br />for ERLC servers.
-              </h2>
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#888888",
-                  maxWidth: "560px",
-                  lineHeight: 1.7,
-                  marginTop: "12px",
-                  margin: "12px auto 0",
-                }}
-                className="lg:!mx-0"
-              >
-                Built by designers in the ERLC community.
-                Ready to use, adapt, and make your own.
-              </p>
-              <div style={{ marginTop: "32px" }}>
-                <Link
-                  href="/templates"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    border: "1px solid #52D973",
-                    background: "transparent",
-                    color: "#F5F5F0",
-                    borderRadius: "8px",
-                    padding: "0 28px",
-                    height: "48px",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    textDecoration: "none",
-                    transition: "background 0.2s",
-                  }}
-                  className="hover:bg-[rgba(82,217,115,0.08)]"
-                >
-                  Browse Templates
-                </Link>
-              </div>
-            </div>
 
-            {/* Right column — 2×2 card grid */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "16px",
-              }}
-            >
-              {["Server branding kit", "Rank card template", "Department structure", "Announcement layout"].map((label) => (
-                <div
-                  key={label}
-                  style={{
-                    background: "#111111",
-                    border: "1px solid #1f1f1f",
-                    borderRadius: "12px",
-                    aspectRatio: "16/9",
-                    display: "flex",
-                    flexDirection: "column",
-                    overflow: "hidden",
-                    transition: "border-color 0.2s",
-                  }}
-                  className="hover:!border-[rgba(82,217,115,0.25)]"
-                >
-                  {/* Top 75% — placeholder with icon */}
-                  <div
-                    style={{
-                      flex: "3",
-                      background: "#0D0D0D",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <svg viewBox="0 0 24 24" width="28" height="28">
-                      <path
-                        fill="#333333"
-                        d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5zM4 14a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5zm10-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-8z"
-                      />
-                    </svg>
-                  </div>
-                  {/* Bottom 25% — label */}
-                  <div
-                    style={{
-                      flex: "1",
-                      padding: "12px 16px",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <span style={{ fontSize: "14px", color: "#888888" }}>{label}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── GUIDES SHOWCASE ──────────────────────────────────────────────── */}
-      <section style={{ background: "#0A0A0A", padding: "120px 48px" }} className="!px-5 sm:!px-12">
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-
-          {/* Centered header */}
-          <div style={{ textAlign: "center", marginBottom: "56px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "center" }}>
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "#52D973",
-                }}
-              >
-                Guides
-              </span>
-              <span
-                style={{
-                  display: "inline-block",
-                  width: "40px",
-                  height: "1px",
-                  background: "#52D973",
-                  opacity: 0.4,
-                  flexShrink: 0,
-                }}
-              />
-            </div>
+          {/* Left-aligned header */}
+          <div style={{ marginBottom: "40px" }}>
+            <SectionLabel label="Templates" />
             <h2
               style={{
                 fontSize: "clamp(28px, 3vw, 42px)",
@@ -405,54 +326,32 @@ export default async function Home() {
                 color: "#F5F5F0",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
-                marginTop: "16px",
               }}
             >
-              Step-by-step guides for
-              <br />your ERLC server.
+              Designer-made templates
+              <br />for ERLC servers.
             </h2>
             <p
               style={{
                 fontSize: "16px",
                 color: "#888888",
-                maxWidth: "560px",
                 lineHeight: 1.7,
                 marginTop: "12px",
-                margin: "12px auto 0",
+                maxWidth: "480px",
               }}
             >
-              Walk through real projects. Build structure.
-              Stop guessing and start executing.
+              Built for the ERLC community. Ready to download and use.
             </p>
           </div>
 
-          {/* 3-column guide cards */}
+          {/* Two template cards */}
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}
-            className="!grid-cols-1 lg:!grid-cols-3"
+            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" }}
+            className="!grid-cols-1 sm:!grid-cols-2"
           >
-            {[
-              {
-                category: "Branding",
-                title: "How to build a brand identity for your ERLC server",
-                description:
-                  "From logo to color system to typography. A complete framework for making your server look intentional.",
-              },
-              {
-                category: "Discord",
-                title: "Setting up a clean Discord structure from scratch",
-                description:
-                  "Channel hierarchy, role clarity, and visual consistency. Everything your server needs to feel organized.",
-              },
-              {
-                category: "Growth",
-                title: "How to grow a roleplay community without shortcuts",
-                description:
-                  "Consistency, structure, and presentation. The long game approach that actually works.",
-              },
-            ].map((card) => (
+            {templates.map((t) => (
               <div
-                key={card.title}
+                key={t.badge}
                 style={{
                   background: "#111111",
                   border: "1px solid #1f1f1f",
@@ -464,6 +363,7 @@ export default async function Home() {
                 }}
                 className="hover:!border-[rgba(82,217,115,0.25)]"
               >
+                {/* Badge */}
                 <span
                   style={{
                     display: "inline-block",
@@ -478,8 +378,10 @@ export default async function Home() {
                     alignSelf: "flex-start",
                   }}
                 >
-                  {card.category}
+                  {t.badge}
                 </span>
+
+                {/* Title */}
                 <p
                   style={{
                     fontSize: "16px",
@@ -489,8 +391,10 @@ export default async function Home() {
                     lineHeight: 1.3,
                   }}
                 >
-                  {card.title}
+                  {t.title}
                 </p>
+
+                {/* Description */}
                 <p
                   style={{
                     fontSize: "13px",
@@ -500,30 +404,195 @@ export default async function Home() {
                     flex: 1,
                   }}
                 >
-                  {card.description}
+                  {t.description}
                 </p>
+
+                {/* Button */}
                 <a
-                  href="/guides"
+                  href={t.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
-                    color: "#52D973",
-                    fontSize: "13px",
-                    marginTop: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: "24px",
+                    height: "44px",
+                    border: "1px solid #52D973",
+                    background: "transparent",
+                    color: "#F5F5F0",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    fontWeight: 500,
                     textDecoration: "none",
+                    transition: "background 0.2s",
                   }}
+                  className="hover:bg-[rgba(82,217,115,0.08)]"
                 >
-                  Read Guide →
+                  {t.label}
                 </a>
               </div>
             ))}
           </div>
 
-          <p style={{ textAlign: "center", color: "#888888", fontSize: "14px", marginTop: "48px" }}>
-            More guides coming soon.
+          {/* Footer link */}
+          <p style={{ marginTop: "24px" }}>
+            <Link
+              href="/templates"
+              style={{ color: "#52D973", fontSize: "13px", textDecoration: "none" }}
+            >
+              View all templates →
+            </Link>
           </p>
         </div>
       </section>
 
-      {/* ── RESOURCE VAULT SHOWCASE ──────────────────────────────────────── */}
+      {/* ── GUIDES SHOWCASE (real data from lib/guides.ts) ───────────────── */}
+      <section style={{ background: "#0A0A0A", padding: "120px 48px" }} className="!px-5 sm:!px-12">
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+
+          {/* Centered header */}
+          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "center", marginBottom: "20px" }}>
+              <span
+                style={{
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "#52D973",
+                }}
+              >
+                Guides
+              </span>
+              <div
+                style={{
+                  height: "1px",
+                  width: "40px",
+                  background: "#52D973",
+                  opacity: 0.4,
+                  flexShrink: 0,
+                }}
+              />
+            </div>
+            <h2
+              style={{
+                fontSize: "clamp(28px, 3vw, 42px)",
+                fontWeight: 800,
+                color: "#F5F5F0",
+                letterSpacing: "-0.02em",
+                lineHeight: 1.1,
+              }}
+            >
+              Step-by-step guides for
+              <br />your ERLC server.
+            </h2>
+            <p
+              style={{
+                fontSize: "16px",
+                color: "#888888",
+                maxWidth: "480px",
+                lineHeight: 1.7,
+                marginTop: "12px",
+                margin: "12px auto 0",
+              }}
+            >
+              Walk through real projects. Build structure. Stop guessing.
+            </p>
+          </div>
+
+          {/* 3 guide cards */}
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}
+            className="!grid-cols-1 lg:!grid-cols-3"
+          >
+            {featuredGuides.map((guide) => (
+              <Link
+                key={guide.id}
+                href={guide.href}
+                style={{
+                  background: "#111111",
+                  border: "1px solid #1f1f1f",
+                  borderRadius: "12px",
+                  padding: "28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition: "border-color 0.2s",
+                  textDecoration: "none",
+                }}
+                className="hover:!border-[rgba(82,217,115,0.25)]"
+              >
+                {/* Category badge */}
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: "rgba(82,217,115,0.08)",
+                    border: "1px solid rgba(82,217,115,0.18)",
+                    color: "#52D973",
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    borderRadius: "4px",
+                    padding: "3px 10px",
+                    alignSelf: "flex-start",
+                  }}
+                >
+                  {guide.category}
+                </span>
+
+                {/* Title */}
+                <p
+                  style={{
+                    fontSize: "16px",
+                    color: "#F5F5F0",
+                    fontWeight: 700,
+                    marginTop: "14px",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {guide.title}
+                </p>
+
+                {/* Description */}
+                <p
+                  style={{
+                    fontSize: "13px",
+                    color: "#888888",
+                    lineHeight: 1.65,
+                    marginTop: "8px",
+                    flex: 1,
+                  }}
+                >
+                  {guide.description}
+                </p>
+
+                {/* Read link */}
+                <span
+                  style={{
+                    color: "#52D973",
+                    fontSize: "13px",
+                    marginTop: "20px",
+                  }}
+                >
+                  Read guide →
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          {/* Footer link */}
+          <p style={{ textAlign: "center", marginTop: "40px" }}>
+            <Link
+              href="/community-guides"
+              style={{ color: "#52D973", fontSize: "13px", textDecoration: "none" }}
+            >
+              View all {guides.length} guides →
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      {/* ── RESOURCE VAULT SHOWCASE (real data from lib/resources.ts) ────── */}
       <section style={{ background: "#0D0D0D", padding: "120px 48px" }} className="!px-5 sm:!px-12">
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div
@@ -535,18 +604,15 @@ export default async function Home() {
             }}
             className="!grid-cols-1 lg:!grid-cols-[3fr_2fr]"
           >
-            {/* Left column — resource list */}
+            {/* Left column — resource rows */}
             <div className="order-2 lg:order-1">
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                {[
-                  { icon: "fi fi-br-play-circle", title: "The ONLY Logo Design Guide You'll EVER Need", source: "YouTube · Satori Graphics" },
-                  { icon: "fi fi-br-globe", title: "ColorHunt", source: "Tool · colorhunt.co" },
-                  { icon: "fi fi-br-play-circle", title: "Welcome to ERLC - a complete guide", source: "YouTube · OMB Gaming" },
-                  { icon: "fi fi-br-globe", title: "Flaticon Interface Icons", source: "Tool · flaticon.com" },
-                  { icon: "fi fi-br-comment-dots", title: "ER:LC Hub Community", source: "Discord · Syce Gaming" },
-                ].map((row) => (
-                  <div
-                    key={row.title}
+                {featuredResources.map((r) => (
+                  <a
+                    key={r.id}
+                    href={r.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
                       background: "#111111",
                       border: "1px solid #1f1f1f",
@@ -556,10 +622,14 @@ export default async function Home() {
                       alignItems: "center",
                       gap: "14px",
                       transition: "border-color 0.2s",
+                      textDecoration: "none",
                     }}
                     className="hover:!border-[rgba(82,217,115,0.25)]"
                   >
-                    <i className={row.icon} style={{ fontSize: "18px", color: "#52D973", flexShrink: 0 }} />
+                    <i
+                      className={getResourceIcon(r)}
+                      style={{ fontSize: "18px", color: "#52D973", flexShrink: 0 }}
+                    />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <p
                         style={{
@@ -571,22 +641,27 @@ export default async function Home() {
                           whiteSpace: "nowrap",
                         }}
                       >
-                        {row.title}
+                        {r.title}
                       </p>
-                      <p style={{ fontSize: "12px", color: "#888888", marginTop: "2px" }}>{row.source}</p>
+                      <p style={{ fontSize: "12px", color: "#888888", marginTop: "2px" }}>
+                        {getSourceLabel(r)}
+                      </p>
                     </div>
                     <span style={{ color: "#52D973", fontSize: "14px", flexShrink: 0 }}>→</span>
-                  </div>
+                  </a>
                 ))}
               </div>
               <p style={{ fontSize: "13px", color: "#888888", marginTop: "12px" }}>
-                +49 more resources in the vault.
+                +{resourceTotal - featuredResourceIds.length} more resources in the vault.
               </p>
             </div>
 
-            {/* Right column */}
+            {/* Right column — header + CTA */}
             <div className="order-1 lg:order-2 text-center lg:text-left">
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "center" }} className="lg:!justify-start">
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "center", marginBottom: "20px" }}
+                className="lg:!justify-start"
+              >
                 <span
                   style={{
                     fontSize: "11px",
@@ -598,11 +673,10 @@ export default async function Home() {
                 >
                   Resource Vault
                 </span>
-                <span
+                <div
                   style={{
-                    display: "inline-block",
-                    width: "40px",
                     height: "1px",
+                    width: "40px",
                     background: "#52D973",
                     opacity: 0.4,
                     flexShrink: 0,
@@ -616,7 +690,6 @@ export default async function Home() {
                   color: "#F5F5F0",
                   letterSpacing: "-0.02em",
                   lineHeight: 1.1,
-                  marginTop: "16px",
                 }}
               >
                 Every resource your
@@ -626,16 +699,14 @@ export default async function Home() {
                 style={{
                   fontSize: "16px",
                   color: "#888888",
-                  maxWidth: "560px",
                   lineHeight: 1.7,
                   marginTop: "12px",
+                  maxWidth: "360px",
                   margin: "12px auto 0",
                 }}
                 className="lg:!mx-0"
               >
-                YouTube tutorials. Design tools. Communities.
-                54 curated resources organized in one place.
-                Not one is owned by @howtoerlc.
+                YouTube tutorials. Design tools. Communities. Curated and organized.
               </p>
               <div style={{ marginTop: "32px" }}>
                 <Link
@@ -671,7 +742,7 @@ export default async function Home() {
 
           {/* Centered header */}
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: "center", marginBottom: "20px" }}>
               <span
                 style={{
                   fontSize: "11px",
@@ -683,11 +754,10 @@ export default async function Home() {
               >
                 AI Assistant
               </span>
-              <span
+              <div
                 style={{
-                  display: "inline-block",
-                  width: "40px",
                   height: "1px",
+                  width: "40px",
                   background: "#52D973",
                   opacity: 0.4,
                   flexShrink: 0,
@@ -701,7 +771,6 @@ export default async function Home() {
                 color: "#F5F5F0",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
-                marginTop: "16px",
               }}
             >
               Ask anything about
@@ -711,19 +780,18 @@ export default async function Home() {
               style={{
                 fontSize: "16px",
                 color: "#888888",
-                maxWidth: "560px",
+                maxWidth: "480px",
                 lineHeight: 1.7,
                 marginTop: "12px",
                 margin: "12px auto 0",
               }}
             >
-              Get structured guidance on branding, Discord setup,
-              roleplay server structure, and more. Instantly.
+              Instant guidance on branding, Discord setup, roleplay structure, and more.
             </p>
           </div>
 
-          {/* Chat preview card */}
-          <div style={{ maxWidth: "880px", margin: "0 auto" }}>
+          {/* Static chat preview card */}
+          <div style={{ maxWidth: "800px", margin: "0 auto" }}>
             <div
               style={{
                 background: "#111111",
@@ -741,23 +809,21 @@ export default async function Home() {
                   padding: "14px 20px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "10px",
+                  justifyContent: "space-between",
                 }}
               >
                 <div style={{ display: "flex", gap: "6px" }}>
-                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#333" }} />
-                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#333" }} />
-                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#333" }} />
+                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#2a2a2a" }} />
+                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#2a2a2a" }} />
+                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#2a2a2a" }} />
                 </div>
-                <span style={{ flex: 1, textAlign: "center", color: "#888888", fontSize: "13px" }}>
-                  @howtoerlc AI
-                </span>
+                <span style={{ color: "#888888", fontSize: "13px" }}>@howtoerlc AI</span>
               </div>
 
-              {/* Chat message area */}
+              {/* Chat body */}
               <div
                 style={{
-                  padding: "24px 20px",
+                  padding: "28px 24px",
                   display: "flex",
                   flexDirection: "column",
                   gap: "16px",
@@ -771,7 +837,7 @@ export default async function Home() {
                       border: "1px solid rgba(82,217,115,0.2)",
                       borderRadius: "12px 12px 2px 12px",
                       padding: "12px 16px",
-                      maxWidth: "75%",
+                      maxWidth: "72%",
                       fontSize: "14px",
                       color: "#F5F5F0",
                     }}
@@ -788,22 +854,28 @@ export default async function Home() {
                       border: "1px solid #1f1f1f",
                       borderRadius: "12px 12px 12px 2px",
                       padding: "16px 18px",
-                      maxWidth: "85%",
+                      maxWidth: "88%",
                     }}
                   >
-                    <p style={{ fontSize: "11px", fontWeight: 700, color: "#52D973", marginBottom: "10px" }}>
+                    <p style={{ fontSize: "11px", fontWeight: 700, color: "#52D973", marginBottom: "8px" }}>
                       @howtoerlc AI
                     </p>
-                    <p style={{ fontSize: "14px", color: "#888888", lineHeight: 1.7, margin: 0 }}>
-                      For a structured police department, start with three tiers:
-                      <br /><br />
-                      <span style={{ display: "block", paddingLeft: "16px" }}>
-                        Command — Chief, Deputy Chief, Captain<br />
-                        Supervision — Lieutenant, Sergeant<br />
-                        Officers — Corporal, Officer I, Officer II, Recruit
-                      </span>
-                      <br />
-                      Keep ranks simple enough that members understand the chain of command on first read. Document each rank&apos;s responsibilities in a pinned channel before you promote anyone.
+                    <p
+                      style={{
+                        fontSize: "14px",
+                        color: "#888888",
+                        lineHeight: 1.75,
+                        margin: 0,
+                        whiteSpace: "pre-line",
+                      }}
+                    >
+                      {`For a structured police department, start with three tiers:
+
+Command — Chief, Deputy Chief, Captain
+Supervision — Lieutenant, Sergeant
+Officers — Corporal, Officer I, Officer II, Recruit
+
+Keep ranks simple enough that members understand the chain of command on first read. Document each rank's responsibilities in a pinned channel before you promote anyone.`}
                     </p>
                   </div>
                 </div>
@@ -828,19 +900,18 @@ export default async function Home() {
                     borderRadius: "8px",
                     padding: "10px 14px",
                     fontSize: "13px",
-                    color: "#888888",
+                    color: "#444444",
                     pointerEvents: "none",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
                   }}
                 >
-                  Ask about ERLC branding, Discord setup, server structure...
+                  Ask about ERLC branding, Discord, server structure...
                 </div>
                 <div
                   style={{
                     background: "#52D973",
-                    border: "none",
                     borderRadius: "8px",
                     width: "36px",
                     height: "36px",
@@ -879,6 +950,9 @@ export default async function Home() {
               >
                 Try the Assistant
               </Link>
+              <p style={{ fontSize: "12px", color: "#444444", marginTop: "10px" }}>
+                Powered by Mistral AI · Free to use
+              </p>
             </div>
           </div>
         </div>
