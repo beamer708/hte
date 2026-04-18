@@ -36,11 +36,11 @@ export default function ShutdownNotice() {
             </div>
 
             <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              howtoerlc — Coming Soon
+              howtoerlc. Coming Soon.
             </h1>
             <p className="mx-auto mt-3 max-w-xl leading-relaxed text-muted-foreground">
-              We&apos;re currently building a team to make this project happen. howtoerlc will be a
-              completely free course showing everyone how to design, run a server, and more.
+              Other servers charge for this. We don&apos;t. howtoerlc is a completely free resource
+              for everyone learning to design, run, and grow an ERLC server.
             </p>
           </div>
 

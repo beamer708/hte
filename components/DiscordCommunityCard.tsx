@@ -28,7 +28,7 @@ export default function DiscordCommunityCard({ resource }: DiscordCommunityCardP
         <p className="mt-1 text-xs leading-relaxed text-muted-foreground line-clamp-2">
           {resource.description}
         </p>
-        <p className="mt-1 text-[11px] text-[#888888] italic">Curated — not owned by @howtoerlc</p>
+        <p className="mt-1 text-[11px] text-[#888888] italic">Curated. Not owned by @howtoerlc.</p>
       </div>
 
       {/* Action */}

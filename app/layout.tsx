@@ -14,11 +14,11 @@ import LoadingScreen from "@/components/LoadingScreen";
 export const metadata: Metadata = {
   metadataBase: new URL("https://howtoerlc.xyz"),
   title: {
-    default: "howtoerlc — Free ERLC Tutorials & Courses",
+    default: "howtoerlc. Free ERLC Tutorials & Courses.",
     template: "%s | howtoerlc",
   },
   description:
-    "howtoerlc is the free learning resource for Emergency Response: Liberty County (ERLC) on Roblox. Learn how to design, run, and grow an ERLC server — completely free.",
+    "howtoerlc is the free learning resource for Emergency Response: Liberty County (ERLC) on Roblox. Other servers charge for this. We don't. Learn to design, run, and grow an ERLC server for free.",
   keywords: [
     "howtoerlc",
     "ERLC",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
         url: "/MetaBanner.png",
         width: 1200,
         height: 630,
-        alt: "@howtoerlc — Built for ERLC communities that mean business.",
+        alt: "@howtoerlc. Other servers sell this. We don't.",
       },
     ],
   },

@@ -196,9 +196,8 @@ export default async function Home() {
                   maxWidth: "440px",
                 }}
               >
-                @howtoerlc organizes curated resources, tools, and guidance for ERLC
-                communities in one place — so your team can find what they need and move
-                forward.
+                Other servers charge for this. We don&apos;t. Everything your ERLC community
+                needs: resources, tools, and guidance. Curated and completely free.
               </p>
               <div>
                 <Link
@@ -976,10 +975,10 @@ Keep ranks simple enough that members understand the chain of command on first r
               lineHeight: 1.2,
             }}
           >
-            Built for ERLC communities that mean business.
+            Other servers sell this. We don&apos;t.
           </h2>
           <p style={{ fontSize: "15px", color: "#888888", marginTop: "16px" }}>
-            Join the community. Access every resource. Free.
+            Everything they charge for. Free. Join the community and take it.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link

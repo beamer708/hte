@@ -17,6 +17,38 @@ const DESIGN_TOOLS = [
       "The go-to tool for livery design, texture work, and any design that involves photo manipulation or raster based artwork. If you are building ERLC liveries, custom overlays, or detailed scene compositions, Photoshop is where that work gets done.",
     href: "https://adobe.com/products/photoshop",
   },
+  {
+    name: "Canva",
+    category: "Graphic Design",
+    label: "Free" as const,
+    description:
+      "A browser-based design tool with a large template library. Good for social media graphics, server announcements, and quick visual content without needing advanced design software.",
+    href: "https://www.canva.com/",
+  },
+  {
+    name: "Affinity Suite",
+    category: "Vector and Raster Design",
+    label: "Paid" as const,
+    description:
+      "A professional-grade alternative to Adobe. Affinity Designer handles vector work, Affinity Photo handles raster editing. One-time purchase, no subscription required.",
+    href: "https://www.affinity.studio/",
+  },
+  {
+    name: "Photopea",
+    category: "Photo Editing and Raster Design",
+    label: "Free" as const,
+    description:
+      "A free, browser-based photo editor that mirrors Photoshop's interface and supports PSD files. Useful for livery work and raster editing without paying for Adobe.",
+    href: "https://www.photopea.com/",
+  },
+  {
+    name: "Figma",
+    category: "UI and Layout Design",
+    label: "Free" as const,
+    description:
+      "The leading tool for UI design, layouts, and collaborative design work. Useful for designing server assets, mockups, and anything requiring precise layout control.",
+    href: "https://www.figma.com/",
+  },
 ];
 
 const COMING_SOON = true;

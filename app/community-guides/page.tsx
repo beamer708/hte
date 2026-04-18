@@ -12,7 +12,7 @@ export default function CommunityGuidesPage() {
         <div className="mx-auto w-full max-w-md rounded-3xl border border-border bg-card p-10">
           <i className="fi fi-sr-rocket" style={{ fontSize: "48px", color: "#52D973" }} aria-hidden />
           <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
-            Helpful Guides — Coming Soon
+            Helpful Guides. Coming Soon.
           </h1>
           <p className="mx-auto mt-3 leading-relaxed text-muted-foreground">
             We&apos;re still setting things up. Guides will be available when howtoerlc launches.

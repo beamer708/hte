@@ -44,7 +44,7 @@ export default function Footer() {
               </span>
             </Link>
             <p style={{ fontSize: "13px", color: "#888888", marginTop: "12px", lineHeight: 1.6 }}>
-              Built for ERLC communities that mean business.
+              Other servers sell this. We don&apos;t.
             </p>
             <p style={{ fontSize: "12px", color: "#555555", marginTop: "16px", lineHeight: 1.6 }}>
               © 2025 @howtoerlc. Independent. Not affiliated with Roblox or ERLC developers.
