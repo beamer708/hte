@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     description:
       "Everything they charge for. Free. Resources, guides, and templates for ERLC communities.",
     type: "website",
-    url: "https://www.howtoerlc.xyz",
+    url: "https://howtoerlc.xyz",
     images: [
       {
         url: "/MetaBanner.png",
