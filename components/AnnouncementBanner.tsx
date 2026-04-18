@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 
-const STORAGE_KEY = "howtoerlc-announcement-dismissed-v4";
 // Monday April 20 2026 at 11:00am EST (UTC-5 = 16:00 UTC)
 const TARGET = new Date("2026-04-20T16:00:00Z");
 
@@ -26,30 +25,13 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
   );
 }
 
-export default function AnnouncementBanner() {
-  const [visible, setVisible] = useState(false);
+export default function AnnouncementBanner({ onDismiss }: { onDismiss: () => void }) {
   const [time, setTime] = useState(getTimeLeft());
 
   useEffect(() => {
-    try {
-      if (localStorage.getItem(STORAGE_KEY) !== "1") setVisible(true);
-    } catch {
-      setVisible(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!visible) return;
     const id = setInterval(() => setTime(getTimeLeft()), 1000);
     return () => clearInterval(id);
-  }, [visible]);
-
-  function dismiss() {
-    setVisible(false);
-    try { localStorage.setItem(STORAGE_KEY, "1"); } catch { /* session-only */ }
-  }
-
-  if (!visible) return null;
+  }, []);
 
   return (
     <>
@@ -207,7 +189,7 @@ export default function AnnouncementBanner() {
           )}
         </div>
 
-        <button className="ab-dismiss" onClick={dismiss} aria-label="Dismiss">
+        <button className="ab-dismiss" onClick={onDismiss} aria-label="Dismiss">
           <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M18 6 6 18M6 6l12 12" />
           </svg>

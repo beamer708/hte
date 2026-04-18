@@ -1,11 +1,11 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import AnnouncementBanner from "@/components/AnnouncementBanner";
+import LaunchAnnouncement from "@/components/LaunchAnnouncement";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <AnnouncementBanner />
+      <LaunchAnnouncement />
       <Navigation />
       <main className="min-h-screen">{children}</main>
       <Footer />
