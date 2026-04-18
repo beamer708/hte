@@ -45,18 +45,27 @@ export const metadata: Metadata = {
     apple: "/GreenLogo.png",
   },
   openGraph: {
-    title: "howtoerlc — Free ERLC Tutorials & Courses",
-    siteName: "howtoerlc",
+    title: "@howtoerlc",
+    siteName: "@howtoerlc",
     description:
-      "The free learning resource for Emergency Response: Liberty County (ERLC). Courses on server design, roleplay, and more. Coming soon.",
+      "Everything they charge for. Free. Resources, guides, and templates for ERLC communities.",
     type: "website",
-    url: "https://howtoerlc.xyz",
+    url: "https://www.howtoerlc.xyz",
+    images: [
+      {
+        url: "/MetaBanner.png",
+        width: 1200,
+        height: 630,
+        alt: "@howtoerlc — Built for ERLC communities that mean business.",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
-    title: "howtoerlc — Free ERLC Tutorials & Courses",
+    card: "summary_large_image",
+    title: "@howtoerlc",
     description:
-      "The free learning resource for Emergency Response: Liberty County (ERLC). Courses on server design, roleplay, and more. Coming soon.",
+      "Everything they charge for. Free. Resources, guides, and templates for ERLC communities.",
+    images: ["/MetaBanner.png"],
   },
   alternates: {
     canonical: "https://howtoerlc.xyz",
